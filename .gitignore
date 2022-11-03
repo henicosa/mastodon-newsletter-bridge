@@ -1,0 +1,6 @@
+secrets
+__pycache__
+archive
+content
+.htmlvalidate.json
+templates
