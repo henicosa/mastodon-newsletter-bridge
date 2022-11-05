@@ -16,9 +16,9 @@ secrets = read_secrets()
 
 def read_subscriptions(filepath):
     contacts = []
-    contacts_file = open("secrets/subscribers.txt", "r").read()
+    contacts_file = open("secrets/subscribers.txt", "r").readlines()
     for line in contacts_file:
-        if "#" != line[0]:
+        if "#" != line[0] and "" != line[0]:
             line = line.replace("\n", "")
             line = line.split(" ")
             contacts.append({"email": line[0], "name": line[1]})
@@ -26,7 +26,7 @@ def read_subscriptions(filepath):
 
 
 def publish_newsletter(mail_content):
-    contacts = []
+    contacts = read_subscriptions("/secrets/subscribers.txt")
     for contact in contacts:
         # replace name
         mail_content["text"] = mail_content["text"].replace("[receiver name]", contact["name"])
@@ -40,7 +40,7 @@ def debug_newsletter(mail_content):
     # replace name
     mail_content["text"] = mail_content["text"].replace("[receiver name]", secrets["debug-receiver"]["name"])
     mail_content["html"] = mail_content["html"].replace("[receiver name]", secrets["debug-receiver"]["name"])
-    mail_content["subject"] = "Ludwig's Debug-News"
+    mail_content["subject"] = "Ludwig's Interim-News"
     send_mail(receiver, mail_content)
 
 
