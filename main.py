@@ -5,7 +5,7 @@ import os
 import shutil
 
 def generate_newsletter():
-    body.fetch_local_content()
+    body.generate_body()
     text = open("content/newsletter.txt", "r").read()
     html = open("content/newsletter.html", "r").read()
     return {"text": text, "html": html, "subject": "Ludwig's Interim-News"}

@@ -1,65 +1,92 @@
-import markdown
+import bridges.local
+import pprint
 
-def fit_text(text):
-    while text and text[0] == "\n" or text[0] == " ":
-        text = text[1:]
-    while text and text[-1] == "\n" or text[-1] == " ":
-        text = text[:-1]
-    return text
+pp = pprint.PrettyPrinter(indent=2, width=530, compact=True)
+
+category_templates = open("templates/category templates.html", "r").read()
+
+def isolate_template(template_name):
+    start_tag = "[begin " + template_name + "]"
+    end_tag = "[end " + template_name + "]"
+    pos1 = category_templates.find(start_tag) + len(start_tag)
+    pos2 = category_templates.find(end_tag)
+    if pos2 != -1:
+        return category_templates[pos1:pos2]
+    else:
+        return ""
+
+
+def multi_insert_in_category_template(template, content):
+    for key, value in content.items():
+        if value: 
+            if isinstance(value, str):
+                template = insert_in_template(template, key, value)
+            elif "html" in value and "text" in value:
+                template = insert_in_template(template, key, value)
+            else:
+                template = multi_insert_in_category_template(template, value)
+    return template
+
+def get_category_template(template_name):
+    html = isolate_template(template_name + " html")
+    if not html:
+        print("Warning: No HTML template specified for " + template_name)
+    text = isolate_template(template_name + " text")
+    if not text:
+        print("Warning: No text template specified for " + template_name)
+    return {"html": html, "text": text}
+
+
+def insert_in_template(template, key, value):
+    if isinstance(value, str):
+        template["html"] = template["html"].replace("[insert " + key + "]", value)
+        template["text"] = template["text"].replace("[insert " + key + "]", value) 
+    else:
+        template["html"] = template["html"].replace("[insert " + key + "]", value["html"])
+        template["text"] = template["text"].replace("[insert " + key + "]", value["text"]) 
+    return template
+
+def fetch_mastodon_articles():
+    return []
+
+def compare_articles(article):
+    return int(article["month_num"]) * 100 + int(article["date"])
     
+def generate_body():
+    body = bridges.local.fetch_content()
+    body["articles"] = body["articles"] + fetch_mastodon_articles()    
+    body["articles"].sort(key=compare_articles)
 
-def fetch_local_article(raw_article):
-    article = {}
-    next_line_index = raw_article.find("\n")
-    first_line = raw_article[:next_line_index]
-    first_line = first_line.split(" ")
-    article["date"] = first_line[0].split(".")[0]
-    article["month"] = first_line[0].split(".")[1]
-    article["class"] = "".join(first_line[1:])
-    if not article["class"]:
-        article["class"] = "plain"
+    template_html = open("templates/template.html", "r").read()
+    template_text = open("templates/template.txt", "r").read()
+    template = {"html": template_html, "text": template_text}
+
+    template = insert_in_template(template, "newsletter title", body["title"])
+    template = insert_in_template(template, "newsletter number", body["number"])
     
-    raw_article = raw_article[(next_line_index+1):]
-    article_items = raw_article.split("### ")
-    root = fit_text(article_items.pop(0))
+    intro = multi_insert_in_category_template(get_category_template("introduction"), body["intro"])
+    template = insert_in_template(template, "introduction", intro)
 
-    # parse image
-    if root.startswith("!["):
-        image = {}
-        image["alt"] = root[2:root.find("]")]
-        image["source"] = root[root.find("](") + 2 : root.find(")", root.find("]("))]
-        article["media"] = [image]
-        root = root[root.find("\n", root.find(")", root.find("](")))+1:]
-        root = fit_text(root)
-    article["root"] = {"html": markdown.markdown(root), "text": root}
+    articles_html = ""
+    articles_text = ""
+    for article in body["articles"]:
+        tmp = multi_insert_in_category_template(get_category_template(article["class"]), article)
+        articles_html += tmp["html"]
+        articles_text += tmp["text"]
+    articles = {"html": articles_html, "text": articles_text}
 
-    # process other items
-    for item in article_items:
-        item = fit_text(item)
-        item = item.split("\n")
-        key = item[0]
-        value = "".join(item[1:])
-        article[key] = value
+    template = insert_in_template(template, "articles", articles)
 
-    return article
 
-def fetch_local_content():
-    news = {}
+    #pp.pprint(body)
 
-    content_level = open("content/content.md", "r").read()
-    h1_level = content_level.split("\n# ")
+    # store newsletter in content directory
+    news_html = open("content/newsletter.html", "w")
+    news_html.write(template["html"].replace("<br />", "<br>"))
+
+    news_text = open("content/newsletter.txt", "w")
+    news_text.write(template["text"])
+
+    news_html.close()
+    news_text.close()
     
-    # parse headline
-    headlines = h1_level[0].split("\n")
-    news["title"] = headlines[0].replace("# ", "")
-    news["number"] = headlines[1].replace("## ", "")
-
-    # parse intro
-    intro = {}
-    intro_raw = h1_level[1]
-
-    # parse timeline
-    articles = []
-    articles_raw = h1_level[2].split("\n## ")
-    for raw_article in articles_raw[1:]:
-        articles.append(fetch_local_article(raw_article))
