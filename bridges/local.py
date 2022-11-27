@@ -1,4 +1,5 @@
 import markdown
+import body
 
 months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
 
@@ -9,15 +10,16 @@ def fit_text(text):
         text = text[:-1]
     return text
     
-def parse_image(root):
-    image = None
+def parse_media(root):
+    media = {"type": "no media"}
     if root.startswith("!["):
-        image = {}
-        image["image alt"] = root[2:root.find("]")]
-        image["image link"] = root[root.find("](") + 2 : root.find(")", root.find("]("))]
+        media = {}
+        media["media alt"] = root[2:root.find("]")]
+        media["media link"] = root[root.find("](") + 2 : root.find(")", root.find("]("))]
+        media["type"] = "image"
         root = root[root.find("\n", root.find(")", root.find("](")))+1:]
         root = fit_text(root)
-    return [root, image]
+    return [root, media]
     
 
 def fetch_local_article(raw_article):
@@ -28,6 +30,7 @@ def fetch_local_article(raw_article):
     article["date"] = first_line[0].split(".")[0]
     article["month_num"] = first_line[0].split(".")[1]
     article["month"] = months[int(article["month_num"]) - 1][0:3]
+    article["full_month"] = months[int(article["month_num"]) - 1]
     article["class"] = "".join(first_line[1:])
     article["source"] = "Exklusiver Inhalt"
     article["media"] = []
@@ -38,12 +41,12 @@ def fetch_local_article(raw_article):
     article_items = raw_article.split("### ")
     root = fit_text(article_items.pop(0))
 
-    # parse image
-    [root, image] = parse_image(root)
-    if image:
-        article["media"] = image
+    # parse media
+    [root, media] = parse_media(root)
+    if media:
+        article["media"] = media
 
-    article["root"] = {"html": markdown.markdown(root), "text": root}
+    article["root"] = {"html": body.convert_to_html(root), "text": body.convert_to_plaintext(root)}
     
     # process other items
     for item in article_items:
@@ -70,11 +73,11 @@ def fetch_content():
     intro = {}
     intro_raw = h1_level[1]
     intro_raw = intro_raw[intro_raw.find("\n")+1:]
-    [intro_raw, image] = parse_image(intro_raw)
+    [intro_raw, media] = parse_media(intro_raw)
     root = intro_raw
-    if image:
-        intro["image link"] = image["image link"]
-        intro["image alt"] = image["image alt"]
+    if media:
+        intro["media link"] = media["media link"]
+        intro["media alt"] = media["media alt"]
     intro["root"] = {"html": markdown.markdown(root), "text": root}
     news["intro"] = intro
 

@@ -40,7 +40,6 @@ def debug_newsletter(mail_content):
     # replace name
     mail_content["text"] = mail_content["text"].replace("[receiver name]", secrets["debug-receiver"]["name"])
     mail_content["html"] = mail_content["html"].replace("[receiver name]", secrets["debug-receiver"]["name"])
-    mail_content["subject"] = "Ludwig's Interim-News"
     send_mail(receiver, mail_content)
 
 
