@@ -10,14 +10,15 @@ def fit_text(text):
         text = text[:-1]
     return text
     
-def parse_media(root):
+def parse_media(root, article_class):
     media = {"type": "no media"}
     if root.startswith("!["):
         media = {}
         media["media alt"] = root[2:root.find("]")]
         media["media link"] = root[root.find("](") + 2 : root.find(")", root.find("]("))]
         media["type"] = "image"
-        root = root[root.find("\n", root.find(")", root.find("](")))+1:]
+        if article_class != "article":
+            root = root[root.find("\n", root.find(")", root.find("](")))+1:]
         root = fit_text(root)
     return [root, media]
     
@@ -36,13 +37,17 @@ def fetch_local_article(raw_article):
     article["media"] = []
     if not article["class"]:
         article["class"] = "article"
-    
+
     raw_article = raw_article[(next_line_index+1):]
     article_items = raw_article.split("### ")
     root = fit_text(article_items.pop(0))
 
+    [root, media] = parse_media(root, article["class"])
+    
+
+
     # parse media
-    [root, media] = parse_media(root)
+
     if media:
         article["media"] = media
 
@@ -62,6 +67,11 @@ def fetch_content():
     news = {}
 
     content_level = open("content/content.md", "r").read()
+    
+    # replace local url with server urls
+    server_base_url = "https://h2981402.stratoserver.net/newsletter/resources"
+    #content_level = content_level.replace("](resources", "](" + server_base_url)
+
     h1_level = content_level.split("\n# ")
     
     # parse headline
@@ -73,7 +83,7 @@ def fetch_content():
     intro = {}
     intro_raw = h1_level[1]
     intro_raw = intro_raw[intro_raw.find("\n")+1:]
-    [intro_raw, media] = parse_media(intro_raw)
+    [intro_raw, media] = parse_media(intro_raw, "intro")
     root = intro_raw
     if media:
         intro["media link"] = media["media link"]

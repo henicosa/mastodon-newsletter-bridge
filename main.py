@@ -13,13 +13,13 @@ parser.add_argument('-p', action='store_true')
 def get_saved_content():
     text = open("content/newsletter.txt", "r").read()
     html = open("content/newsletter.html", "r").read()
-    return {"text": text, "html": html, "subject": "Ludwig's Kanada-Kurier"}
+    return {"text": text, "html": html, "subject": "Ludwig's Kanada-Kurier - November 2022"}
 
 def generate_newsletter():
     body.generate_body()
     text = open("content/newsletter.txt", "r").read()
     html = open("content/newsletter.html", "r").read()
-    return {"text": text, "html": html, "subject": "Ludwig's Kanada-Kurier"}
+    return {"text": text, "html": html, "subject": "Ludwig's Kanada-Kurier - November 2022"}
 
 def archive_newsletter(mail_content):
     src = r"content"
@@ -35,7 +35,7 @@ def publish():
     mail_content = get_saved_content()
     
     # publish mail
-    # mail.publish_newsletter(mail_content)
+    mail.publish_newsletter(mail_content)
 
     # store newsletter in archive
     archive_newsletter(mail_content)

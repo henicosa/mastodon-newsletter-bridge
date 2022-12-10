@@ -10,19 +10,19 @@ pp = pprint.PrettyPrinter(indent=2, width=530, compact=True)
 months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
 
 
-def fetch_articles():
+def fetch_articles(month_num):
     articles = []
     NewsFeed = feedparser.parse("https://social.bau-ha.us/@viji5369.rss")
            
     for entry in NewsFeed.entries:
         entry["published_parsed"] = time.gmtime(time.mktime(entry["published_parsed"]) - time.mktime(time.gmtime(60*60*6)))
-        if entry["published_parsed"].tm_mon == 10:
+        if entry["published_parsed"].tm_mon == month_num:
             article = {}
             article["date"] = str(entry["published_parsed"].tm_mday)
             article["month_num"] = str(entry["published_parsed"].tm_mon)
             article["month"] = months[int(article["month_num"]) - 1][0:3]
             article["full_month"] = months[int(article["month_num"]) - 1]
-            article["class"] = "article"
+            article["class"] = "article-mastodon"
             article["source"] = {"html": "<a href=\"https://social.bau-ha.us/@viji5369\">@viji5369@social.bau-ha.us</a>","text": "mastodon: @viji5369@bau-ha.us"}
             article["media"] = {"type": "no media"}
 

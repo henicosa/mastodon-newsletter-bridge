@@ -133,7 +133,11 @@ def compare_articles(article):
     
 def generate_body():
     body = bridges.local.fetch_content()
-    body["articles"] = body["articles"] + bridges.mastodon.fetch_articles()    
+    try: 
+        month_num = (int(body["number"]) + 2) % 12 + 1
+        body["articles"] = body["articles"] + bridges.mastodon.fetch_articles(month_num)
+    except:
+        print("Konnte Ausgabennummer nicht mit Monat verknüpfen")    
     body["articles"].sort(key=compare_articles)
 
     template_html = open("templates/template.html", "r").read()
