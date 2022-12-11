@@ -13,7 +13,7 @@ parser.add_argument('-p', action='store_true')
 def get_saved_content():
     text = open("content/newsletter.txt", "r").read()
     html = open("content/newsletter.html", "r").read()
-    return {"text": text, "html": html, "subject": "Ludwig's Kanada-Kurier - November 2022"}
+    return {"text": text, "html": html, "subject": "Ludwig's Canada Courier - November 2022"}
 
 def generate_newsletter():
     body.generate_body()
