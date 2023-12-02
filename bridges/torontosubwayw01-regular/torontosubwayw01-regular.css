@@ -1,0 +1,8 @@
+/* toronto-subway-w01-regular */
+@font-face {
+	font-family: TorontoSubwayW01-Regular;
+	font-style: normal;
+	font-weight: 400;
+	src: local("Toronto Subway W01 Regular"), local("TorontoSubwayW01-Regular"), url(toronto-subway-w01-regular.woff2) format("woff2");
+}
+

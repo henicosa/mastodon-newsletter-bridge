@@ -4,3 +4,4 @@ archive
 content
 .htmlvalidate.json
 templates
+.vscode/settings.json

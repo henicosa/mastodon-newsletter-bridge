@@ -11,6 +11,7 @@ months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August"
 
 
 def fetch_articles(month_num):
+    print("Suche auf mastodon nach Artikel für den Monat " + months[int(month_num) - 1])
     articles = []
     NewsFeed = feedparser.parse("https://social.bau-ha.us/@viji5369.rss")
            
@@ -37,5 +38,7 @@ def fetch_articles(month_num):
             root = entry["summary"]
             article["root"] = {"html": body.convert_to_html(root), "text": body.convert_to_plaintext(root)}
             articles.append(article)
+
+    print("Habe", str(len(articles)), "Artikel gefunden")
 
     return articles

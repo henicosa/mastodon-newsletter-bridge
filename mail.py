@@ -16,7 +16,7 @@ secrets = read_secrets()
 
 def read_subscriptions(filepath):
     contacts = []
-    contacts_file = open("secrets/subscribers.txt", "r").readlines()
+    contacts_file = open(filepath, "r").readlines()
     for line in contacts_file:
         if "#" != line[0] and "" != line[0]:
             line = line.replace("\n", "")
@@ -25,21 +25,34 @@ def read_subscriptions(filepath):
     return contacts
 
 
-def publish_newsletter(mail_content):
-    contacts = read_subscriptions("/secrets/subscribers.txt")
+def publish_newsletter(mail_content:dict, use_english:bool=False) -> None:
+    """Sends the newsletter to all subscribers in the file "secrets/subscribers.txt"
+    
+    Arguments:
+        mail_content {dict} -- The content of the mail. Contains the subject, the text and the html version of the mail.
+        use_english {bool} -- If true, the newsletter will be sent in english. If false, it will be sent in german.
+    """
+
+    subscribers_filename = "subscribers"
+    
+
+    if use_english:
+        print("Sende Newsletter auf Englisch")
+        subscribers_filename = "subscribers_en"
+    else: 
+        print("Sende Newsletter auf Deutsch")
+    contacts = read_subscriptions("secrets/" + subscribers_filename + ".txt")
+
     for contact in contacts:
-        # replace name
-        mail_content["text"] = mail_content["text"].replace("[receiver name]", contact["name"])
-        mail_content["html"] = mail_content["html"].replace("[receiver name]", contact["name"])
+       send_mail(contact, mail_content)
 
-        send_mail(contact, mail_content)
-
+def personalize_mail(mail_content, name):
+    mail_content["text"] = mail_content["text"].replace("[insert reader name]", name)
+    mail_content["html"] = mail_content["html"].replace("[insert reader name]", name)
+    return mail_content
 
 def debug_newsletter(mail_content):
     receiver = {"name": secrets["debug-receiver"]["name"], "email": secrets["debug-receiver"]["email"]}
-    # replace name
-    mail_content["text"] = mail_content["text"].replace("[receiver name]", secrets["debug-receiver"]["name"])
-    mail_content["html"] = mail_content["html"].replace("[receiver name]", secrets["debug-receiver"]["name"])
     send_mail(receiver, mail_content)
 
 
@@ -55,9 +68,10 @@ def send_mail(receiver, mail_content):
     message["From"] = secrets["sender"]["email"]
     message["To"] = receiver["email"]
 
+    name = receiver["name"]
     # Turn these into plain/html MIMEText objects
-    part1 = MIMEText(mail_content["text"], "plain")
-    part2 = MIMEText(mail_content["html"], "html")
+    part1 = MIMEText(mail_content["text"].replace("[insert reader name]", name), "plain")
+    part2 = MIMEText(mail_content["html"].replace("[insert reader name]", name), "html")
 
     message.attach(part1)
     message.attach(part2)

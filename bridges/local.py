@@ -1,5 +1,6 @@
 import markdown
 import body
+import sys
 
 months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
 
@@ -17,7 +18,7 @@ def parse_media(root, article_class):
         media["media alt"] = root[2:root.find("]")]
         media["media link"] = root[root.find("](") + 2 : root.find(")", root.find("]("))]
         media["type"] = "image"
-        if article_class != "article":
+        if article_class != "article" and article_class != "article-mastodon":
             root = root[root.find("\n", root.find(")", root.find("](")))+1:]
         root = fit_text(root)
     return [root, media]
@@ -40,6 +41,7 @@ def fetch_local_article(raw_article):
 
     raw_article = raw_article[(next_line_index+1):]
     article_items = raw_article.split("### ")
+    print(article_items)
     root = fit_text(article_items.pop(0))
 
     [root, media] = parse_media(root, article["class"])
@@ -63,14 +65,15 @@ def fetch_local_article(raw_article):
 
     return article
 
-def fetch_content():
+def fetch_content(local_linking=False):
     news = {}
 
     content_level = open("content/content.md", "r").read()
     
     # replace local url with server urls
-    server_base_url = "https://h2981402.stratoserver.net/newsletter/resources"
-    #content_level = content_level.replace("](resources", "](" + server_base_url)
+    server_base_url = "https://ludattel.de/newsletter/resources"
+    if not local_linking:
+        content_level = content_level.replace("](resources", "](" + server_base_url)
 
     h1_level = content_level.split("\n# ")
     
@@ -80,6 +83,7 @@ def fetch_content():
     news["number"] = headlines[1].replace("## ", "")
 
     # parse intro
+
     intro = {}
     intro_raw = h1_level[1]
     intro_raw = intro_raw[intro_raw.find("\n")+1:]
@@ -90,6 +94,7 @@ def fetch_content():
         intro["media alt"] = media["media alt"]
     intro["root"] = {"html": markdown.markdown(root), "text": root}
     news["intro"] = intro
+    
 
     # parse timeline
     articles = []
