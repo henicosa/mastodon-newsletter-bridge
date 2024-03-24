@@ -1,23 +1,97 @@
-import feedparser
+#import feedparser
 
 import body
 import pprint
 import markdown
 import time
+import datetime
+import requests
 
 
 pp = pprint.PrettyPrinter(indent=2, width=530, compact=True)
 months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
 
+def extract_posts_between_dates(start_date, end_date, max_iterations=30):
+    json_url = "https://social.bau-ha.us/api/v1/accounts/192533/statuses?exclude_replies=true&exclude_reblogs=true&limit=40"
+    
+    all_posts = []
+    max_id = None
+    iterations = 0
+    
+    while iterations < max_iterations:
+        print("Looking for max id " + str(max_id))
+        url = json_url
+        if max_id:
+            url += f"&max_id={max_id}"
+        
+        print("Waiting for response")
+        response = requests.get(url)
+        print("Response arrived")
+        if response.status_code == 200:
+            posts = response.json()
+            if not posts:
+                break  # No more posts available
 
-def fetch_articles(month_num):
-    print("Suche auf mastodon nach Artikel für den Monat " + months[int(month_num) - 1])
+            for post in posts:
+                created_at = datetime.datetime.fromisoformat(post['created_at'][:-1])  # Convert ISO format to datetime
+                if start_date <= created_at <= end_date:
+                    all_posts.append(post)
+                max_id = int(post['id']) - 1  # Update max_id for next iteration
+
+            if datetime.datetime.fromisoformat(posts[-1]['created_at'][:-1]) < start_date:
+                break  # No more posts in time range available
+
+        else:
+            print(f"Error: Failed to fetch data (Status code: {response.status_code})")
+            break
+        
+        iterations += 1
+    return all_posts
+
+def fetch_articles(start, end):
+    """
+    Fetches articles from mastodon
+    
+    :param start: datetime.datetime
+    :param end: datetime.datetime
+    :return: list of articles
+    """
+
+    print("Suche auf mastodon nach Artikel von" + str(start) + " bis " + str(end) )
     articles = []
-    NewsFeed = feedparser.parse("https://social.bau-ha.us/@viji5369.rss")
+    posts = extract_posts_between_dates(start, end)
            
-    for entry in NewsFeed.entries:
+    for entry in posts:
+
+        entry["created_at"] = datetime.datetime.fromisoformat(entry["created_at"][:-1])  # Convert ISO format to datetime
+        entry_is_inbetween = start <= entry["created_at"] <= end
+        if entry_is_inbetween:
+            article = {}
+            article["date"] = str(entry["created_at"].day)
+            article["month_num"] = str(entry["created_at"].month)
+            months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+            article["month"] = months[int(article["month_num"]) - 1][0:3]
+            article["full_month"] = months[int(article["month_num"]) - 1]
+            article["origin"] = "article-mastodon"
+            article["class"] = "article-mastodon"
+            article["source"] = {"html": f"<a href=\"{entry['url']}\">@{entry['account']['username']}@social.bau-ha.us</a>","text": f"mastodon: @{entry['account']['username']}@bau-ha.us"}
+            article["media"] = {"type": "no media"}
+
+            if entry["media_attachments"]:
+                media_attachment = entry["media_attachments"][0]
+                article["media"] = {"media link": media_attachment["url"], "media alt": media_attachment["description"]}
+                article["media"]["type"] = media_attachment["type"]
+                if "video" in article["media"]["type"]:
+                    article["media"]["type"] = "gif"
+            
+            article["root"] = {"html": entry["content"], "text": ""}  # Assuming "content" contains HTML
+            articles.append(article)
+
+        """
         entry["published_parsed"] = time.gmtime(time.mktime(entry["published_parsed"]) - time.mktime(time.gmtime(60*60*6)))
-        if entry["published_parsed"].tm_mon == month_num:
+        entry_datetime = datetime.datetime.fromtimestamp(time.mktime(entry["published_parsed"]))
+        entry_is_inbetween = start <= entry_datetime <= end
+        if entry_is_inbetween:
             article = {}
             article["date"] = str(entry["published_parsed"].tm_mday)
             article["month_num"] = str(entry["published_parsed"].tm_mon)
@@ -38,6 +112,7 @@ def fetch_articles(month_num):
             root = entry["summary"]
             article["root"] = {"html": body.convert_to_html(root), "text": body.convert_to_plaintext(root)}
             articles.append(article)
+        """
 
     print("Habe", str(len(articles)), "Artikel gefunden")
 

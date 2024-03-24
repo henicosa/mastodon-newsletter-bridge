@@ -31,7 +31,9 @@ def read_backgrounds():
 backgrounds = read_backgrounds()
 
 def get_background(title):
-    return backgrounds[hash(title) % len(backgrounds)]
+    sel = hash(title) % len(backgrounds)
+    print(sel)
+    return backgrounds[sel]
 
 
 def find_media_type(media):
@@ -180,12 +182,25 @@ def update_content_from_bridges(month_num):
         
     
 def generate_body(local_linking=False):
+    """
+    Generates the newsletter body from the content fetched from the bridges
+    
+    :param local_linking: bool
+    """
+
     body = bridges.local.fetch_content(local_linking)
+
+    # fetch articles from mastodon
+    body["articles"] = bridges.mastodon.fetch_articles(body["start"], body["end"])
+
+    """
     try: 
         month_num = (int(body["number"]) + 2) % 12 + 1
         body["articles"] = body["articles"] + bridges.mastodon.fetch_articles(month_num)
     except:
-        print("Konnte Ausgabennummer nicht mit Monat verknüpfen")    
+        print("Konnte Ausgabennummer nicht mit Monat verknüpfen")  
+    """   
+
     body["articles"].sort(key=compare_articles)
 
     template_html = open("templates/template.html", "r").read()

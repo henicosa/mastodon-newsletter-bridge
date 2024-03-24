@@ -41,7 +41,7 @@ def fetch_local_article(raw_article):
 
     raw_article = raw_article[(next_line_index+1):]
     article_items = raw_article.split("### ")
-    print(article_items)
+
     root = fit_text(article_items.pop(0))
 
     [root, media] = parse_media(root, article["class"])
@@ -65,11 +65,56 @@ def fetch_local_article(raw_article):
 
     return article
 
+from datetime import datetime
+from dateutil import parser
+
+def parse_frontmatter(content):
+    frontmatter_lines = []
+    content_lines = content.splitlines()
+    
+    # Find the start and end of frontmatter
+    start_index, end_index = None, None
+    for i, line in enumerate(content_lines):
+        if line.strip() == '---':
+            if start_index is None:
+                start_index = i
+            elif end_index is None:
+                end_index = i
+                break
+    
+    if start_index is not None and end_index is not None:
+        frontmatter_lines = content_lines[start_index+1:end_index]
+    
+    frontmatter_data = {}
+    for line in frontmatter_lines:
+        key_value = line.split(':', 1)
+        if len(key_value) == 2:
+            key = key_value[0].strip()
+            value = key_value[1].strip()
+            frontmatter_data[key] = value
+    
+    return frontmatter_data
+
+
+def extract_dates_from_markdown(content):
+    post = parse_frontmatter(content)
+    
+    if 'start' in post.keys() and 'end' in post.keys():
+        start_date = parser.parse(post['start'])
+        end_date = parser.parse(post['end'])
+        return start_date, end_date
+    else:
+        return None, None
+
 def fetch_content(local_linking=False):
     news = {}
 
     content_level = open("content/content.md", "r").read()
     
+    news["start"], news["end"] = extract_dates_from_markdown(content_level)
+    
+    content_level = "".join(content_level.split("---\n")[2:])
+
     # replace local url with server urls
     server_base_url = "https://ludattel.de/newsletter/resources"
     if not local_linking:
