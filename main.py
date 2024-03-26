@@ -9,6 +9,7 @@ import argparse
 parser = argparse.ArgumentParser(description="Flip a switch by setting a flag")
 parser.add_argument('-d', action='store_true')
 parser.add_argument('-p', action='store_true')
+parser.add_argument('-f', action='store_true')
 parser.add_argument('-l', action='store_true')
 # process english version
 parser.add_argument('-e', action='store_true')
@@ -56,6 +57,9 @@ def debug(use_english):
     mail_content = get_saved_content(use_english)
     mail.debug_newsletter(mail_content)
 
+def fetch_articles():
+    body.fetch_articles()
+
 
 if __name__=="__main__":
     args = parser.parse_args()
@@ -63,6 +67,8 @@ if __name__=="__main__":
         debug(args.e)
     elif args.p:
         publish(args.e)
+    elif args.f:
+        fetch_articles()
     else:
         #body.update_content_from_bridges(12)
         generate(args.l)

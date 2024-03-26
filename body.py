@@ -5,6 +5,7 @@ import datetime
 import pprint
 from bs4 import BeautifulSoup
 import re
+import hashlib
 
 pp = pprint.PrettyPrinter(indent=2, width=530, compact=True)
 
@@ -31,8 +32,8 @@ def read_backgrounds():
 backgrounds = read_backgrounds()
 
 def get_background(title):
-    sel = hash(title) % len(backgrounds)
-    print(sel)
+    sel = int(hashlib.sha1(title.encode("utf-8")).hexdigest(), 16)
+    sel = sel % len(backgrounds)
     return backgrounds[sel]
 
 
@@ -152,6 +153,9 @@ def insert_in_template(template, key, value):
     return template
 
 def insert_media_in_template(template, media):
+    """
+    
+    """
     media_template = ""
     if "video" in media["type"]:
         media_template = forge_from_template("media video", media)
@@ -165,22 +169,11 @@ def insert_media_in_template(template, media):
 def compare_articles(article):
     return int(article["month_num"]) * 100 + int(article["date"])
 
-def update_content_from_bridges(month_num):
-    articles = bridges.mastodon.fetch_articles(month_num)
-    appendix = ""
-    for article in articles:
-        entry = "\n"
-        entry += "## " + article["date"] + "." + article["month_num"] + " " + article["class"] + "\n"
-        if article["media"] and "media link" in article["media"]:
-            if "media alt" in article["media"]:
-                entry += "![" + article["media"]["media alt"] + "](" + article["media"]["media link"] + ")\n"
-            else:
-                entry += "![Keine Bildbeschreibung verfügbar.](" + article["media"]["media link"] + ")\n"
-        entry += "### article-html\n" + article["root"]["html"] + "\n"
-        appendix += entry
-    print(appendix)
-        
-    
+def fetch_articles():
+    body = bridges.local.fetch_content()
+    bridges.mastodon.write_articles(body["start"], body["end"])
+
+
 def generate_body(local_linking=False):
     """
     Generates the newsletter body from the content fetched from the bridges
@@ -191,7 +184,7 @@ def generate_body(local_linking=False):
     body = bridges.local.fetch_content(local_linking)
 
     # fetch articles from mastodon
-    body["articles"] = bridges.mastodon.fetch_articles(body["start"], body["end"])
+    # body["articles"] = bridges.mastodon.fetch_articles(body["start"], body["end"])
 
     """
     try: 

@@ -1,12 +1,14 @@
 #import feedparser
 
 import body
+import json
 import pprint
 import markdown
 import time
 import datetime
 import requests
 
+categories = json.load(open('templates/categories.json', 'r'))
 
 pp = pprint.PrettyPrinter(indent=2, width=530, compact=True)
 months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
@@ -17,16 +19,15 @@ def extract_posts_between_dates(start_date, end_date, max_iterations=30):
     all_posts = []
     max_id = None
     iterations = 0
+
+    print("Suche auf mastodon nach Artikel von " + start_date.strftime("%d.%m.%Y") + " bis " + end_date.strftime("%d.%m.%Y"))
     
     while iterations < max_iterations:
-        print("Looking for max id " + str(max_id))
         url = json_url
         if max_id:
             url += f"&max_id={max_id}"
         
-        print("Waiting for response")
         response = requests.get(url)
-        print("Response arrived")
         if response.status_code == 200:
             posts = response.json()
             if not posts:
@@ -46,7 +47,72 @@ def extract_posts_between_dates(start_date, end_date, max_iterations=30):
             break
         
         iterations += 1
+
+    print("Habe", str(len(all_posts)), "Artikel gefunden")
+
     return all_posts
+
+
+def convert_toot_to_markdown(toot):
+    """
+    Converts a toot to markdown
+    """
+    date_in_d_m_format = datetime.datetime.strptime(toot["created_at"], "%Y-%m-%dT%H:%M:%S.%fZ").strftime("%d.%m")
+    article_class = "article-mastodon"
+    if "tags" in toot:
+        for tag in toot["tags"]:
+            print("tag", tag["name"])
+            for category in categories:
+                if tag["name"] in categories[category]:
+                    print("category", category)
+                    article_class = category
+                    break
+
+    md = "## " + date_in_d_m_format  + " " + article_class + "\n"
+    
+    md_media = "\n## media_attachments\n"
+    
+    if toot["media_attachments"]:
+        for media in toot["media_attachments"]:
+            md += "![" + str(media["description"]) + "](" + media["preview_url"] + ")\n"
+            md_media += "### media\n#### media link\n" + media["preview_url"] + "#### media alt\n" + str(media["description"]) + "\n"
+
+    md += toot["content"] + "\n"
+
+    if toot["card"]:
+        md += "\n### card\n![" + str(toot["card"]["title"]) + "](" + str(toot["card"]["image"]) + ")\n"
+
+    
+
+
+    #if md_media != "\n## media\n":
+    #    md += md_media
+
+    md += "\n\n"
+    return md
+
+
+def write_articles(start, end):
+    """
+    Writes articles to a markdown file
+    
+    :param start: datetime.datetime
+    :param end: datetime.datetime
+    """
+    posts = extract_posts_between_dates(start, end)
+    md = ""
+    for post in posts:
+        md += convert_toot_to_markdown(post)
+    content_md = open("content/content.md", "r").read()
+    if "# Mastodon" in content_md:
+        # only replace mastodon section
+        section_start = content_md.find("\n# Mastodon")
+        section_end = content_md.find("\n# ", section_start + 1)
+        content_md = content_md[:section_start] + "\n# Mastodon\n" + md + content_md[section_end:]
+    else:
+        content_md += "\n# Mastodon\n" + md
+    open("content/content.md", "w").write(content_md)
+
 
 def fetch_articles(start, end):
     """
@@ -78,6 +144,7 @@ def fetch_articles(start, end):
             article["media"] = {"type": "no media"}
 
             if entry["media_attachments"]:
+                article["origin"] = "article-mastodon"
                 media_attachment = entry["media_attachments"][0]
                 article["media"] = {"media link": media_attachment["url"], "media alt": media_attachment["description"]}
                 article["media"]["type"] = media_attachment["type"]
@@ -115,5 +182,7 @@ def fetch_articles(start, end):
         """
 
     print("Habe", str(len(articles)), "Artikel gefunden")
+
+    pprint.pprint(articles)
 
     return articles
