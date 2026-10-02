@@ -35,7 +35,7 @@ def extract_posts_between_dates(start_date, end_date, max_iterations=30):
 
             for post in posts:
                 created_at = datetime.datetime.fromisoformat(post['created_at'][:-1])  # Convert ISO format to datetime
-                if start_date <= created_at <= end_date:
+                if start_date <= created_at <= end_date + datetime.timedelta(days=1):
                     all_posts.append(post)
                 max_id = int(post['id']) - 1  # Update max_id for next iteration
 
@@ -126,7 +126,8 @@ def fetch_articles(start, end):
     print("Suche auf mastodon nach Artikel von" + str(start) + " bis " + str(end) )
     articles = []
     posts = extract_posts_between_dates(start, end)
-           
+    posts = list(reversed(posts))
+
     for entry in posts:
 
         entry["created_at"] = datetime.datetime.fromisoformat(entry["created_at"][:-1])  # Convert ISO format to datetime

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Newsletter Editor</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,400italic,700,700italic">
+  <link rel="stylesheet" href="https://fonts.bunny.net/css?family=montserrat:400,400i,700,700i">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vollkorn:wght@800&display=swap">
+  <link rel="stylesheet" href="{{ url_for('static', filename='editor.css') }}">
+</head>
+<body>
+  <header class="toolbar">
+    <h1>Newsletter Editor</h1>
+    <label class="template-picker">
+      Template
+      <select id="template-select">
+        {% for name in templates %}
+        <option value="{{ name }}"{% if name == 'default' %} selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <p id="status" class="status" role="status">Lade Inhalt…</p>
+  </header>
+  <main class="split">
+    <section class="pane editor-pane" id="editor-pane">
+      <div id="editor-list"></div>
+    </section>
+    <section class="pane preview-pane">
+      <iframe id="preview-frame" title="Gerenderter Newsletter" sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+      <pre id="preview-error" class="preview-error" hidden></pre>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='editor.js') }}"></script>
+</body>
+</html>

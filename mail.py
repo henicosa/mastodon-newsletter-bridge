@@ -70,10 +70,10 @@ def send_mail(receiver, mail_content):
 
     name = receiver["name"]
     # Turn these into plain/html MIMEText objects
-    part1 = MIMEText(mail_content["text"].replace("[insert reader name]", name), "plain")
+   # part1 = MIMEText(mail_content["text"].replace("[insert reader name]", name), "plain")
     part2 = MIMEText(mail_content["html"].replace("[insert reader name]", name), "html")
 
-    message.attach(part1)
+    #message.attach(part1)
     message.attach(part2)
 
     with smtplib.SMTP_SSL(secrets["sender"]["server-domain"], port, context=context) as server:

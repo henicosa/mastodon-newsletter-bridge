@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="published-on" content="[insert iso-timestamp]">
+  <meta name="newsletter-starts" content="[insert newsletter-starts]">
+  <meta name="newsletter-ends" content="[insert newsletter-ends]">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Ludwig's Newsletter</title>
+    <style>
+	  
+	:root {
+		--background-color: #c3f5ee;
+		/*--cross-color-a: #bedbdd;
+		--cross-color-b: #dbffa1;*/
+		--cross-color: #f8d3e7;
+		--cross-color-a: #a0abac;
+		--snowflake-size: 200px;
+  		--snowflake-color: rgba(255, 255, 255, 0.3);
+		--cross-color-b: #f1a1ff;
+		--cross-color-b-alpha: #e40a0e66;
+		--button-color: #c9317d;
+		--card-color: #ffdaed;
+	}
+
+	.button {
+		box-shadow: 10px 10px 0px rgba(200,100,0,.3);
+		background-color: var(--button-color);
+		color: var(--card-color);
+		margin-bottom: 15px;
+		padding: 7px;
+	}
+
+	.button:hover {
+		box-shadow: 6px 6px 0px rgba(200,100,0,.3);
+		transform: translate(4px, 4px);
+		filter: brightness(125%);
+	}
+
+	img, video {
+		border-radius: 10px;
+	}
+
+	.content-right > figure:first-child,
+	.content-right > img:first-child,
+	.content-right > p:first-child > img:first-child {
+		border-radius: 10px;
+		overflow: hidden;
+		margin-top: 0;
+	}
+
+	.content-right > figure:first-child {
+		margin-block-start: 0;
+	}
+
+	.content-right > figure:first-child img {
+		border-radius: 10px;
+		display: block;
+	}
+
+	hr {
+		color: var(--button-color);
+	}
+
+
+	body	{
+        background-color: #ffffff;
+background-image: url("https://www.transparenttextures.com/patterns/handmade-paper.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+			/*background-image:
+			radial-gradient(circle at 100% 150%, var(--background-color) 24%, var(--cross-color-a) 24%, var(--cross-color-a) 28%, var(--background-color) 28%, var(--background-color) 36%, var(--cross-color-a) 36%, var(--cross-color-a) 40%, transparent 40%, transparent),
+			radial-gradient(circle at 0    150%, var(--background-color) 24%, var(--cross-color-a) 24%, var(--cross-color-a) 28%, var(--background-color) 28%, var(--background-color) 36%, var(--cross-color-a) 36%, var(--cross-color-a) 40%, transparent 40%, transparent),
+			radial-gradient(circle at 50%  100%, var(--cross-color-a) 10%, var(--background-color) 10%, var(--background-color) 23%, var(--cross-color-b) 23%, var(--cross-color-b) 30%, var(--background-color) 30%, var(--background-color) 43%, var(--cross-color-a) 43%, var(--cross-color-a) 50%, var(--background-color) 50%, var(--background-color) 63%, var(--cross-color-a) 63%, var(--cross-color-a) 71%, transparent 71%, transparent),
+			radial-gradient(circle at 100% 50%, var(--cross-color-a) 5%, var(--background-color) 5%, var(--background-color) 15%, var(--cross-color-b) 15%, var(--cross-color-b) 20%, var(--background-color) 20%, var(--background-color) 29%, var(--cross-color-a) 29%, var(--cross-color-a) 34%, var(--background-color) 34%, var(--background-color) 44%, var(--cross-color-a) 44%, var(--cross-color-a) 49%, transparent 49%, transparent),
+			radial-gradient(circle at 0    50%, var(--cross-color-a) 5%, var(--background-color) 5%, var(--background-color) 15%, var(--cross-color-b) 15%, var(--cross-color-b) 20%, var(--background-color) 20%, var(--background-color) 29%, var(--cross-color-a) 29%, var(--cross-color-a) 34%, var(--background-color) 34%, var(--background-color) 44%, var(--cross-color-a) 44%, var(--cross-color-a) 49%, transparent 49%, transparent);
+		background-size: 200px 100px;*/
+		margin: 0;
+		padding: 0;
+		color: var(--button-color);
+	}
+
+	.debug {
+		border: 2px dashed #ddd;
+		border-radius: 10px;
+	}
+
+	.box {
+		width: 90%;
+	}
+
+
+
+	@media only screen and (min-width: 660px) {
+		.box {
+			width: 600px;
+		}
+
+        .timeline-article, .top-article {
+            font-size: 24px;
+            line-height: 1.25em;
+        }
+
+	}
+
+	@media only screen and (min-width: 400px) {
+		h1 {
+			font-size: 2.8em;
+		}
+
+		#newsletter-title {
+		font-size: 1.3em !important;
+		}
+
+		#newsletter-pretitle {
+		font-size: 0.7em !important; 
+		}
+	}
+
+	/*===== Vertical Timeline =====*/
+	#conference-timeline {
+	  position: relative;
+	  max-width: 920px;
+	  width: 100%;
+	  margin: 0 auto;
+	}
+	#conference-timeline .timeline-start,
+	#conference-timeline .timeline-end {
+	  display: table;
+	  font-size: 18px;
+	  font-weight: 900;
+	  text-transform: uppercase;
+	  background: var(--button-color);
+	  padding: 15px 23px;
+	  color: #fff;
+	  max-width: 5%;
+	  width: 100%;
+	  text-align: center;
+	  margin: 3%
+	}
+
+	.chapter-start-title {
+	  display: table;
+	  font-size: 2em;
+	  font-weight: 900;
+	  text-transform: uppercase;
+      font-family: "Vollkorn";
+	  padding: 15px 23px;
+	  color: var(--button-color);
+	  max-width: 5%;
+	  width: 100%;
+	  text-align: center;
+	  margin: 3%
+	}
+
+	#conference-timeline .conference-center-line {
+	  position: absolute;
+	  margin-left: 3%;
+	  left: 50px;
+	  width: 3px;
+	  height: 100%;
+	  top: 0;
+	  margin-left: -2px;
+	  background: var(--button-color);
+	  z-index: -1;
+	}
+	#conference-timeline .conference-timeline-content {
+	  padding-top: 37px;
+	}
+
+	.timeline-article {
+	  width: 100%;
+	  height: auto;
+	  position: relative;
+	  overflow: hidden;
+	  margin: 10px 0;
+	  box-sizing: border-box;
+	}
+
+	.timeline-article, .top-article {
+	color: #6f5e8e;
+	  font-family: 'Pangolin';
+	  font-size: 19px;
+	  line-height: 1.25em;
+	}
+
+	.top-article {
+	  width: 100%;
+	  height: auto;
+	  position: relative;
+	  overflow: hidden;
+	  margin: 20px 0;
+	}
+
+	.timeline-article .timeline-author {
+	  display: block;
+	  font-weight: 400;
+	  font-size: 14px;
+	  line-height: 24px;
+	  text-align: right;
+	}
+
+
+	.content-right p {
+	  margin: 1% 1%;
+	  margin-top: 0.5em;
+	      padding-left: 25px;
+    padding-right: 25px;
+	  font-weight: 400;
+	  position: relative;
+	}
+
+	.content-right > p:nth-child(1) {
+	  padding-top: 35px;
+	}
+
+	.timeline-article p span.article-number {
+	  position: absolute;
+	  font-weight: 300;
+	  font-size: 44px;
+	  top: 10px;
+	  left: -60px;
+	  color: var(--button-color);
+	}
+	.timeline-article .content-left-container {
+	  float: left;
+	}
+	.timeline-article .content-right-container {
+	  float: right;
+	  box-sizing: border-box;
+	}
+
+	.timeline-article .content-right {
+	  box-sizing: border-box;
+	  overflow: hidden;
+	}
+	.timeline-article .content-left:before,
+	.timeline-article .content-right:before{
+	  position: absolute;
+	  top: 20px;
+	  font-size: 23px;
+	  font-family: "FontAwesome";
+	  color: #fff;
+	}
+
+	
+	figure {
+		margin-inline: 0;
+		margin-block: 0.5em;
+	}
+
+	figcaption {
+		font-size: 0.8em;
+		margin-top: 0;
+		text-align: justify;
+		font-style: italic;
+		opacity: 0.5;
+		line-height: 1em;
+		    padding-left: 25px;
+    padding-right: 25px;
+
+	}
+	/*===== // Vertical Timeline =====*/
+
+	/*===== // Resonsive Vertical Timeline =====*/
+  </style>
+
+</head>
+
+<body>
+  <!-- Vertical Timeline -->
+<?xml version="1.0" encoding="utf-8"?>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 2340" xmlns:bx="https://boxy-svg.com" style="position: absolute; top: 0; z-index: -50;">
+      <defs>
+        <linearGradient gradientUnits="userSpaceOnUse" bx:pinned="true" id="color-3">
+          <title>turkis</title>
+          <stop style="stop-color: rgb(4, 105, 111);"/>
+        </linearGradient>
+      </defs>
+      <path style="fill: url(&quot;#color-3&quot;); fill-opacity: 0.3;" d="M 0 1349.273 C 10.147 1264.69 460.796 1314.263 314.917 1715.929 C 310.104 1726.974 364.573 1712.315 381.122 1781.105 C 387.293 1705.188 367.413 1546.457 561.471 1500 C 576.941 1526.078 547.499 1149.603 815.443 1050.279 C 770.741 1050.198 561.755 566.715 1100 500 L 1100 0 L 0 0 L 0 1349.273 Z">
+        <title>cloud3</title>
+      </path>
+      <path style="fill: url(&quot;#color-3&quot;); fill-opacity: 0.36;" d="M 0.072 1459.018 C 0.072 1459.018 339.455 1489.832 232.798 1891.5 C 232.798 1891.5 303.146 1905.116 319.032 2002.696 C 319.032 2002.696 325.839 1852.922 496.038 1855.191 C 496.038 1855.191 457.46 1505.717 818.28 1512.525 C 813.233 1510.282 799.743 1206.863 1100 1174.398 L 1100 0 L 0 0 L 0.072 1459.018 Z">
+        <title>cloud2</title>
+      </path>
+      <path style="fill: url(&quot;#color-3&quot;); fill-opacity: 0.14;" d="M 0 2064.071 C 37.224 2035.147 310.679 1972.067 375.437 2267.655 C 410.679 2164.828 628.912 2000 800 2227.991 C 799.672 2156.702 845.873 2041.022 1000 2074.789 C 1000 2072.876 950.24 1939.195 1100 1872.009 C 1098.73 1891.052 1100 0 1100 0 L -5.454 0 L 0 2064.071 Z" id="object-0">
+        <title>cloud1</title>
+      </path>
+    </svg>
+    
+      <div class="box" style="max-width: 600px; margin: auto">
+    
+        <h1 style="text-align: center; 
+          font-family: 'Vollkorn';
+          font-weight: 900;
+          font-size: 45px; 
+          margin: 30px, 0;
+          color: #ffffff;
+          margin-top: 40px;
+        ">
+          <div style="font-size: 0.7em; font-family: 'Indie Flower';">Ludwig's</div>
+          <div style="font-size: 1.3em; line-height: 0.8em;">[insert newsletter title]</div>
+          <div style="margin-top: 0.3em; font-size: 0.6em;">- # [insert newsletter number] -</div>
+        </h1>
+
+
+[insert introduction]
+
+		<section id="conference-timeline">
+
+			<div class="conference-timeline-content">
+
+[insert articles]
+
+			<!-- // Vertical Timeline -->
+			</div>
+		</section>
+
+		<div style="width: 80%; margin: 0 auto; margin-top: 50px;"><hr></div>
+		<div style="width: 80%; margin: 0 auto; padding-bottom: 2em;
+			text-align: center; font-size: 0.6em;">
+
+Der Newsletter wird nicht richtig angezeigt? <a href="https://ludattel.de/newsletter/archive/2023/April">Klicke Hier</a> um dir die Online-Version anzusehen. <br> <br>
+			Du erhältst diesen Newsletter, weil Du dich für das Leben von Ludwig Lorenz interessierst oder nur ausversehen abonniert hast.
+			Und weil ich mich nach dem Datenverlust an deine E-Mail Adresse erinnern konnte. <br> Herzlichen Glückwunsch dafür! <br>
+			Damit diese Mails zuverlässig zugestellt werden, füge bitte die Adresse ludwignews@gmx.de zu deinem Adressbuch hinzu. <br>
+			Frühere Ausgaben der Ludwig-News sind gegebenenfalls über eine direkte Anfrage an ludwignews@gmx.de erhältlich. Deine
+			Privatsphäre ist uns wichtig.<br>
+			<br>
+			Du kannst diesen Newsletter jederzeit abbestellen. Klicken dazu
+			hier: <br>
+			<a href="mailto:ludwignews@gmx.de?subject=%5BAbbestellen%5D%20Hiermit%20k%C3%BCndige%20ich%20mein%20LudwigNews-Abonnement&amp;body=Schade%2C%20dass%20Sie%20uns%20verlassen!%0A%0ATeilen%20Sie%20uns%20hier%20gern%20den%20Grund%20ihrer%20Abbestellung%20mit%3A%0A%0A%5BGrund%20hier%20einf%C3%BCgen%5D">Abbestellen</a>
+		</div>
+
+	</div>
+
+</body>
+</html>
+

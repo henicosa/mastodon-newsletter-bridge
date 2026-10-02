@@ -1,0 +1,85 @@
+[begin Dezember]
+--snowflake-size: 200px;
+--snowflake-color: rgba(255, 255, 255, 0.3);
+background-color: var(--background-color);
+background-image:
+  linear-gradient(90deg, transparent calc(var(--snowflake-size) / 2), var(--snowflake-color) calc(var(--snowflake-size) / 3), var(--snowflake-color) calc(var(--snowflake-size) / 1.5), transparent calc(var(--snowflake-size) / 1.5)),
+  linear-gradient(-45deg, transparent calc(var(--snowflake-size) / 3), var(--snowflake-color) calc(var(--snowflake-size) / 3), var(--snowflake-color) calc(var(--snowflake-size) / 0.967), transparent calc(var(--snowflake-size) / 5));
+background-size: var(--snowflake-size) var(--snowflake-size);
+background-position: 0 0, calc(var(--snowflake-size) / 2) calc(var(--snowflake-size) / 2);
+[end Dezember]
+
+[begin Weihnachten]
+background-color: lightcoral;
+background-image:
+  linear-gradient(45deg, transparent calc(var(--snowflake-size) / 3), var(--snowflake-color) calc(var(--snowflake-size) / 3), var(--snowflake-color) calc(var(--snowflake-size) / 1.5), transparent calc(var(--snowflake-size) / 1.5)),
+  linear-gradient(45deg, transparent calc(var(--snowflake-size) / 3), var(--snowflake-color) calc(var(--snowflake-size) / 3), var(--snowflake-color) calc(var(--snowflake-size) / 1.5), transparent calc(var(--snowflake-size) / 1.5));
+background-size: var(--snowflake-size) var(--snowflake-size);
+background-position: 0 0, calc(var(--snowflake-size) / 2) calc(var(--snowflake-size) / 2);
+[end Weihnachten]
+
+[begin Oktober]
+background: var(--background-color);
+background-image: linear-gradient(90deg, var(--cross-color-b-alpha) 45%, transparent 0),
+    linear-gradient(var(--cross-color-b-alpha) 45%, transparent 0);
+background-size: 100px 100px; 
+background-position: 0 0, 0 0, -50px -50px, 50px 50px;
+[end Oktober]
+
+[begin November]
+background:
+radial-gradient(black 3px, transparent 4px),
+radial-gradient(black 3px, transparent 4px),
+linear-gradient(#fff 4px, transparent 0),
+linear-gradient(45deg, transparent 74px, transparent 75px, #a4a4a4 75px, #a4a4a4 76px, transparent 77px, transparent 109px),
+linear-gradient(-45deg, transparent 75px, transparent 76px, #a4a4a4 76px, #a4a4a4 77px, transparent 78px, transparent 109px),
+#fff;
+background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
+background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+[end November]
+
+[begin September]
+background-color:var(--background-color);
+[end September]
+
+[begin css-1]
+background: radial-gradient(circle, transparent 20%, var(--background-color) 20%, var(--background-color) 80%, transparent 20%, transparent), radial-gradient(circle, transparent 50%, var(--background-color) 20%, var(--background-color) 50%, transparent 50%, transparent) 30px 30px, linear-gradient(var(--cross-color) 28px, transparent 28px) 0 -4px, linear-gradient(90deg, var(--cross-color)2px, transparent 2px) -1px 0;
+background-color: var(--background-color);
+background-position: -50px, -50px;
+background-size: 150px 150px, 30px 30px, 25px 15px, 15px 15px;
+[end css-1]
+
+[begin August]
+background-color:var(--background-color);
+background-image:
+    radial-gradient(circle at 100% 150%, var(--background-color) 24%, var(--cross-color-a) 24%, var(--cross-color-a) 28%, var(--background-color) 28%, var(--background-color) 36%, var(--cross-color-a) 36%, var(--cross-color-a) 40%, transparent 40%, transparent),
+    radial-gradient(circle at 0    150%, var(--background-color) 24%, var(--cross-color-a) 24%, var(--cross-color-a) 28%, var(--background-color) 28%, var(--background-color) 36%, var(--cross-color-a) 36%, var(--cross-color-a) 40%, transparent 40%, transparent),
+    radial-gradient(circle at 50%  100%, var(--cross-color-a) 10%, var(--background-color) 10%, var(--background-color) 23%, var(--cross-color-b) 23%, var(--cross-color-b) 30%, var(--background-color) 30%, var(--background-color) 43%, var(--cross-color-a) 43%, var(--cross-color-a) 50%, var(--background-color) 50%, var(--background-color) 63%, var(--cross-color-a) 63%, var(--cross-color-a) 71%, transparent 71%, transparent),
+    radial-gradient(circle at 100% 50%, var(--cross-color-a) 5%, var(--background-color) 5%, var(--background-color) 15%, var(--cross-color-b) 15%, var(--cross-color-b) 20%, var(--background-color) 20%, var(--background-color) 29%, var(--cross-color-a) 29%, var(--cross-color-a) 34%, var(--background-color) 34%, var(--background-color) 44%, var(--cross-color-a) 44%, var(--cross-color-a) 49%, transparent 49%, transparent),
+    radial-gradient(circle at 0    50%, var(--cross-color-a) 5%, var(--background-color) 5%, var(--background-color) 15%, var(--cross-color-b) 15%, var(--cross-color-b) 20%, var(--background-color) 20%, var(--background-color) 29%, var(--cross-color-a) 29%, var(--cross-color-a) 34%, var(--background-color) 34%, var(--background-color) 44%, var(--cross-color-a) 44%, var(--cross-color-a) 49%, transparent 49%, transparent);
+background-size: 200px 100px;
+[end August]
+
+[begin Juli]
+        background-color:var(--background-color);
+		background-image:
+			radial-gradient(circle at 100% 150%, var(--background-color) 24%, var(--cross-color-a) 24%, var(--cross-color-a) 28%, var(--background-color) 28%, var(--background-color) 36%, var(--cross-color-a) 36%, var(--cross-color-a) 40%, transparent 40%, transparent),
+			radial-gradient(circle at 0    150%, var(--background-color) 24%, var(--cross-color-a) 24%, var(--cross-color-a) 28%, var(--background-color) 28%, var(--background-color) 36%, var(--cross-color-a) 36%, var(--cross-color-a) 40%, transparent 40%, transparent),
+			radial-gradient(circle at 50%  100%, var(--cross-color-a) 10%, var(--background-color) 10%, var(--background-color) 23%, var(--cross-color-b) 23%, var(--cross-color-b) 30%, var(--background-color) 30%, var(--background-color) 43%, var(--cross-color-a) 43%, var(--cross-color-a) 50%, var(--background-color) 50%, var(--background-color) 63%, var(--cross-color-a) 63%, var(--cross-color-a) 71%, transparent 71%, transparent),
+			radial-gradient(circle at 100% 50%, var(--cross-color-a) 5%, var(--background-color) 5%, var(--background-color) 15%, var(--cross-color-b) 15%, var(--cross-color-b) 20%, var(--background-color) 20%, var(--background-color) 29%, var(--cross-color-a) 29%, var(--cross-color-a) 34%, var(--background-color) 34%, var(--background-color) 44%, var(--cross-color-a) 44%, var(--cross-color-a) 49%, transparent 49%, transparent),
+			radial-gradient(circle at 0    50%, var(--cross-color-a) 5%, var(--background-color) 5%, var(--background-color) 15%, var(--cross-color-b) 15%, var(--cross-color-b) 20%, var(--background-color) 20%, var(--background-color) 29%, var(--cross-color-a) 29%, var(--cross-color-a) 34%, var(--background-color) 34%, var(--background-color) 44%, var(--cross-color-a) 44%, var(--cross-color-a) 49%, transparent 49%, transparent);
+		background-size: 200px 100px;
+[end Juli]
+
+[begin Juni]
+background: radial-gradient(circle, transparent 20%, var(--background-color) 20%, var(--background-color) 80%, transparent 20%, transparent), radial-gradient(circle, transparent 20%, var(--background-color) 20%, var(--background-color) 80%, transparent 80%, transparent) 10px 10px, linear-gradient(var(--cross-color) 8px, transparent 8px) 0 -4px, linear-gradient(90deg, var(--cross-color)2px, transparent 2px) -1px 0;
+background-color: var(--background-color);
+background-size: 50px 50px, 30px 30px, 25px 15px, 15px 15px;
+[end Juni]
+
+[begin Mai]
+background: radial-gradient(circle, transparent 20%, var(--background-color) 20%, var(--background-color) 80%, transparent 20%, transparent), radial-gradient(circle, transparent 20%, var(--background-color) 20%, var(--background-color) 80%, transparent 80%, transparent) 10px 10px, linear-gradient(var(--cross-color) 8px, transparent 8px) 0 -4px, linear-gradient(90deg, var(--cross-color)2px, transparent 2px) -1px 0;
+background-color: var(--background-color);
+background-size: 50px 50px, 30px 30px, 25px 15px, 15px 15px;
+[end Mai]
+

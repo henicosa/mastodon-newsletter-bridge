@@ -1,7 +1,6 @@
-secrets
 __pycache__
 archive
+resources
+secrets
+.vscode
 content
-.htmlvalidate.json
-templates
-.vscode/settings.json

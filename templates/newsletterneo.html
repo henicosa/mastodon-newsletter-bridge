@@ -1,0 +1,2567 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="published-on" content="2024-11-10T17:14:28.465122+01:00">
+  <meta name="newsletter-starts" content="2024-04-01T00:00:00+02:00">
+  <meta name="newsletter-ends" content="2024-07-31T00:00:00+02:00">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Pangolin&family=Vollkorn:ital,wght@0,900;1,900&display=swap" rel="stylesheet">  <title>Ludwig's Newsletter</title>
+  <style>
+	  
+	:root {
+		--background-color: #c3f5ee;
+		/*--cross-color-a: #bedbdd;
+		--cross-color-b: #dbffa1;*/
+		--cross-color: #f8d3e7;
+		--cross-color-a: #a0abac;
+		--snowflake-size: 200px;
+  		--snowflake-color: rgba(255, 255, 255, 0.3);
+		--cross-color-b: #f1a1ff;
+		--cross-color-b-alpha: #e40a0e66;
+		--button-color: #c9317d;
+		--card-color: #ffdaed;
+	}
+
+	.button {
+		box-shadow: 10px 10px 0px rgba(200,100,0,.3);
+		background-color: var(--button-color);
+		color: var(--card-color);
+		margin-bottom: 15px;
+		padding: 7px;
+	}
+
+	.button:hover {
+		box-shadow: 6px 6px 0px rgba(200,100,0,.3);
+		transform: translate(4px, 4px);
+		filter: brightness(125%);
+	}
+
+	img, video {
+		border-radius: 10px;
+	}
+
+	hr {
+		color: var(--button-color);
+	}
+
+
+	body	{
+        background-color: #ffffff;
+background-image: url("https://www.transparenttextures.com/patterns/handmade-paper.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+			/*background-image:
+			radial-gradient(circle at 100% 150%, var(--background-color) 24%, var(--cross-color-a) 24%, var(--cross-color-a) 28%, var(--background-color) 28%, var(--background-color) 36%, var(--cross-color-a) 36%, var(--cross-color-a) 40%, transparent 40%, transparent),
+			radial-gradient(circle at 0    150%, var(--background-color) 24%, var(--cross-color-a) 24%, var(--cross-color-a) 28%, var(--background-color) 28%, var(--background-color) 36%, var(--cross-color-a) 36%, var(--cross-color-a) 40%, transparent 40%, transparent),
+			radial-gradient(circle at 50%  100%, var(--cross-color-a) 10%, var(--background-color) 10%, var(--background-color) 23%, var(--cross-color-b) 23%, var(--cross-color-b) 30%, var(--background-color) 30%, var(--background-color) 43%, var(--cross-color-a) 43%, var(--cross-color-a) 50%, var(--background-color) 50%, var(--background-color) 63%, var(--cross-color-a) 63%, var(--cross-color-a) 71%, transparent 71%, transparent),
+			radial-gradient(circle at 100% 50%, var(--cross-color-a) 5%, var(--background-color) 5%, var(--background-color) 15%, var(--cross-color-b) 15%, var(--cross-color-b) 20%, var(--background-color) 20%, var(--background-color) 29%, var(--cross-color-a) 29%, var(--cross-color-a) 34%, var(--background-color) 34%, var(--background-color) 44%, var(--cross-color-a) 44%, var(--cross-color-a) 49%, transparent 49%, transparent),
+			radial-gradient(circle at 0    50%, var(--cross-color-a) 5%, var(--background-color) 5%, var(--background-color) 15%, var(--cross-color-b) 15%, var(--cross-color-b) 20%, var(--background-color) 20%, var(--background-color) 29%, var(--cross-color-a) 29%, var(--cross-color-a) 34%, var(--background-color) 34%, var(--background-color) 44%, var(--cross-color-a) 44%, var(--cross-color-a) 49%, transparent 49%, transparent);
+		background-size: 200px 100px;*/
+		margin: 0;
+		padding: 0;
+		color: var(--button-color);
+	}
+
+	.debug {
+		border: 2px dashed #ddd;
+		border-radius: 10px;
+	}
+
+	.box {
+		width: 90%;
+	}
+
+
+
+	@media only screen and (min-width: 660px) {
+		.box {
+			width: 600px;
+		}
+
+        .timeline-article, .top-article {
+            font-size: 24px;
+            line-height: 1.25em;
+        }
+
+	}
+
+	@media only screen and (min-width: 400px) {
+		h1 {
+			font-size: 2.8em;
+		}
+
+		#newsletter-title {
+		font-size: 1.3em !important;
+		}
+
+		#newsletter-pretitle {
+		font-size: 0.7em !important; 
+		}
+	}
+
+	/*===== Vertical Timeline =====*/
+	#conference-timeline {
+	  position: relative;
+	  max-width: 920px;
+	  width: 100%;
+	  margin: 0 auto;
+	}
+	#conference-timeline .timeline-start,
+	#conference-timeline .timeline-end {
+	  display: table;
+	  font-size: 18px;
+	  font-weight: 900;
+	  text-transform: uppercase;
+	  background: var(--button-color);
+	  padding: 15px 23px;
+	  color: #fff;
+	  max-width: 5%;
+	  width: 100%;
+	  text-align: center;
+	  margin: 3%
+	}
+
+	.chapter-start-title {
+	  display: table;
+	  font-size: 2em;
+	  font-weight: 900;
+	  text-transform: uppercase;
+      font-family: "Vollkorn";
+	  padding: 15px 23px;
+	  color: var(--button-color);
+	  max-width: 5%;
+	  width: 100%;
+	  text-align: center;
+	  margin: 3%
+	}
+
+	#conference-timeline .conference-center-line {
+	  position: absolute;
+	  margin-left: 3%;
+	  left: 50px;
+	  width: 3px;
+	  height: 100%;
+	  top: 0;
+	  margin-left: -2px;
+	  background: var(--button-color);
+	  z-index: -1;
+	}
+	#conference-timeline .conference-timeline-content {
+	  padding-top: 37px;
+	}
+
+	.timeline-article {
+	  width: 100%;
+	  height: auto;
+	  position: relative;
+	  overflow: hidden;
+	  margin: 10px 0;
+	}
+
+	.timeline-article, .top-article {
+	color: #6f5e8e;
+	  font-family: 'Pangolin';
+	  font-size: 19px;
+	  line-height: 1.25em;
+	}
+
+	.top-article {
+	  width: 100%;
+	  height: auto;
+	  position: relative;
+	  overflow: hidden;
+	  margin: 20px 0;
+	}
+
+	.timeline-article .timeline-author {
+	  display: block;
+	  font-weight: 400;
+	  font-size: 14px;
+	  line-height: 24px;
+	  text-align: right;
+	}
+
+
+	.content-right p {
+	  margin: 1% 1%;
+	  margin-top: 0.5em;
+	  padding: 0;
+	  font-weight: 400;
+	  position: relative;
+	}
+	.timeline-article p span.article-number {
+	  position: absolute;
+	  font-weight: 300;
+	  font-size: 44px;
+	  top: 10px;
+	  left: -60px;
+	  color: var(--button-color);
+	}
+	.timeline-article .content-left-container {
+	  float: left;
+	}
+	.timeline-article .content-right-container {
+	  float: right;
+	}
+	.timeline-article .content-left:before,
+	.timeline-article .content-right:before{
+	  position: absolute;
+	  top: 20px;
+	  font-size: 23px;
+	  font-family: "FontAwesome";
+	  color: #fff;
+	}
+
+	/*===== // Vertical Timeline =====*/
+
+	/*===== // Resonsive Vertical Timeline =====*/
+  </style>
+
+</head>
+
+<body>
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 2340" xmlns:bx="https://boxy-svg.com" style="position: absolute; top: 0; z-index: -50;">
+      <defs>
+        <linearGradient gradientUnits="userSpaceOnUse" bx:pinned="true" id="color-3">
+          <title>turkis</title>
+          <stop style="stop-color: rgb(4, 105, 111);"/>
+        </linearGradient>
+      </defs>
+      <path style="fill: url(&quot;#color-3&quot;); fill-opacity: 0.3;" d="M 0 1349.273 C 10.147 1264.69 460.796 1314.263 314.917 1715.929 C 310.104 1726.974 364.573 1712.315 381.122 1781.105 C 387.293 1705.188 367.413 1546.457 561.471 1500 C 576.941 1526.078 547.499 1149.603 815.443 1050.279 C 770.741 1050.198 561.755 566.715 1100 500 L 1100 0 L 0 0 L 0 1349.273 Z">
+        <title>cloud3</title>
+      </path>
+      <path style="fill: url(&quot;#color-3&quot;); fill-opacity: 0.36;" d="M 0.072 1459.018 C 0.072 1459.018 339.455 1489.832 232.798 1891.5 C 232.798 1891.5 303.146 1905.116 319.032 2002.696 C 319.032 2002.696 325.839 1852.922 496.038 1855.191 C 496.038 1855.191 457.46 1505.717 818.28 1512.525 C 813.233 1510.282 799.743 1206.863 1100 1174.398 L 1100 0 L 0 0 L 0.072 1459.018 Z">
+        <title>cloud2</title>
+      </path>
+      <path style="fill: url(&quot;#color-3&quot;); fill-opacity: 0.14;" d="M 0 2064.071 C 37.224 2035.147 310.679 1972.067 375.437 2267.655 C 410.679 2164.828 628.912 2000 800 2227.991 C 799.672 2156.702 845.873 2041.022 1000 2074.789 C 1000 2072.876 950.24 1939.195 1100 1872.009 C 1098.73 1891.052 1100 0 1100 0 L -5.454 0 L 0 2064.071 Z" id="object-0">
+        <title>cloud1</title>
+      </path>
+    </svg>
+    
+      <div class="box" style="max-width: 600px; margin: auto">
+    
+        <h1 style="text-align: center; 
+          font-family: 'Vollkorn';
+          font-weight: 900;
+          font-size: 45px; 
+          margin: 30px, 0;
+          color: #ffffff;
+          margin-top: 40px;
+        ">
+          <div style="font-size: 0.7em; font-family: 'Indie Flower';">Ludwig's</div>
+          <div style="font-size: 1.3em; line-height: 0.8em;">Sommer Newsletter</div>
+          <div style="margin-top: 0.3em; font-size: 0.6em;">- # 14 -</div>
+        </h1>
+
+
+
+<div class="top-article">
+        <div class="content-right" style="
+            margin-top: 100px;
+            width: auto;
+            max-width: 100%;
+            position: relative;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,.03);
+            padding: 25px 25px;
+            padding-top: 60px;">
+            <img src="https://ludattel.de/newsletter/resources/2024/sommer/author.jpg" alt="Ludwig genießt den längsten Sommer seines Lebens" style="
+                border-radius: 50%;
+                width: 150px;
+                height: 150px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 25px;
+                margin-top: -150px;
+                color: #fff;
+                border-radius: 100%;">
+            <p><strong>Ludwig:</strong> Sommer ist eine meiner vier Lieblingsjahreszeiten. Es gibt kaum etwas schöneres als eine halbierte Melone aus dem Kühlschrank zu nehmen und auf einer Decke im heißen Park auszulöffeln. Das ist Lebensqualität.</p>
+<p>Qualitativ setzt der Sommer 2024 aber neue Maßstäbe: Es ist der bisher längste Sommer meines Lebens. Während Deutschland ab August langsam in den Herbstmodus umschaltet, entfliehe ich der bunten Übergangsperiode zwischen Sommer und Winter auf eine fast tropische Mittelmeerinsel. Der bisher längste Sommer verdient natürlich auch die bisher längste Newsletterausgabe. Deswegen erscheint sie auch hintereinander in zwei Teilen. Ich hoffe ihr könnt ihn bei herbstlichen Schmökerwetter bei einer guten Tasse Tee genießen.</p>
+<p>Wilkommen beim großen Sommerrückblick 2024:</p>
+<ul>
+<li><strong>April</strong>: April, April, macht was ich will. Denn ich habe Geburtstag und als großes Geschenk entdecke ich nach mehreren Jahren unverhofft wieder das Fahrrad fahren für mich.</li>
+<li><strong>Mai</strong>: Ich war zum allerersten Mal Blut spenden und mit Daniel auf einer richtigen Fahradtour. Natürlich nicht am gleichen Tag. </li>
+<li><strong>Juni</strong>: Ich entdecke eine Stadt, aus der ich im April extra ganz schnell wieder abgereist bin: Wien möchte ich lieber zusammen mit Oma entdecken.</li>
+<li><strong>Juli</strong>: Jetzt geht es in die Prüfungsphase. Also viel Lernen im Park und auf Balkonien. Kann auch schön sein.</li>
+</ul>
+<p>Und wann kommt jetzt Malta? In Teil 2 geht es weiter mit <strong>August</strong>, <strong>September</strong> und <strong>Oktober</strong>.</p>
+<p><em><strong>Kommentar der Redaktion:</strong> Ab dieser Ausgabe gibt es eine Karte mit Orten, die ich besucht habe, zu Beginn jedes Monats. Ich hoffe ihr hattet auch einen erlebnisreichen Sommer. Schreibt mir doch gern von eurem Lieblingssommererlebnis.</em></p>
+        </div>
+    <span class="timeline-author">Ludwig genießt den längsten Sommer seines Lebens</span>
+</div>
+
+
+		<section id="conference-timeline">
+
+			<div class="conference-timeline-content">
+
+
+<div class="chapter-start" style="display: flex;">
+    <div style="width: 30%; margin: auto;"><hr></div>
+    <div class="chapter-start-title" style="width: 30%">April</div>
+    <div style="width: 30%; margin: auto;"><hr></div>
+</div>
+
+<div class="timeline-article map">
+    <div class="content-right-container" style="width: 100%;">
+      
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            margin-top: 0px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+        
+<img style="margin-bottom:1em ;" src="https://ludattel.de/newsletter/resources/2024/sommer/map_04.png" width="100%" alt="Karte für April">
+
+            <div class="map-text-content" style="padding: 0px 25px 25px 25px;">
+            <p><strong>Unterwegs im April:</strong><br>
+Meine <strong>erste Dienstreise</strong> führt mich nach Wien ins kuschelige IKEA Hostel. Von dort aus starte ich in einen <strong>Interrailkurzurlaub</strong> in die Schweiz, bei der sich mir Markus aus Brasilien anschließt. <br>
+Am Ende des Monats haben <strong>Papa</strong> und ich unseren jährlichen <strong>Städteausflug</strong>. Dieses Jahr bin ich mit der Planung dran und habe mich für Dessau entschieden - hier treffen Bauhaus und englische Landschaftsgärten aufeinander, ein Traum.</p>
+            </div>
+        </div>
+    </div>
+    <span class="timeline-author">Exklusiver Inhalt</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="padding-top: 21px; padding-left: 10px; padding-right: 10px;">
+        <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 0px;
+                margin-bottom: -80px;
+                z-index: 1;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">06</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Apr</span>
+            </div>
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            margin-top: 50px;
+            box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.102);
+            background-color: var(--card-color);
+        ">
+            
+<img style="margin-bottom:1em;" src="https://social.bau-ha.us/system/media_attachments/files/112/226/486/493/926/544/small/93d78937ee7760c2.png" width="100%" alt="Selfie von Linda, Olli, mir und Agnes.">
+
+<div class="map-text-content" style="padding: 0px 25px 25px 25px;">
+<p>Detektiv Conan Club und die geheime Bärlauchwiese:</p>
+<p>Wir zelebrieren den kulinarischen Frühlingsempfang und sammeln Bärlauch am Schloss Ettersburg - bei unserer neuen Lieblingsstelle, die ich letztes Jahr entdeckt habe.</p>
+<p>Agnes fährt mit dem Fahrrad nach Ettersburg. Olli, Linda, Willi, Maja und ich nehmen den Bus und legen nochmal eine Wanderzulage ein.</p>
+<p>Von der erholen wir uns bei einer Viererfolge Conan und dazu Nudeln mit Kirschtomaten und frischem Bärlauchpesto.</p>
+        </div>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">08</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Apr</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/237/767/436/830/332/small/d5bfcf908eaa089b.png" width="100%" alt="Screenshot aus Chatgruppe.
+
+Ein Bild einer verlorenen thoska mit Bildunterschrift "thoska von ludwig... Shakespearestraße"">
+<p>Suche meine thoska und Kreditkarte... Ich hab sie doch nicht verloren oder?<br>Oskar schlägt vor, ich soll mal in der Sharing is Caring Gruppe schauen. Suche nach thoska...<br>Treffer in der Shakespearestraße. </p>
+<p>Die Kreditkarte wird doch wohl nicht auch... Hmm.. eine DKB Kreditkarte wurde in der Humboldtstraße gefunden.</p>
+<p>Schaffe es nicht rechtzeitig. Meine thoska wird erneut &quot;gefunden&quot;. Ein neues Bild taucht in einer Wohnheimsgruppe auf mit der Frage ob mich irgendwer kennt. Bekomme viele Zuschriften. Garnicht so einfach in dieser digitalisierten Welt Schritt zu halten.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">10</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Apr</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/249/033/480/763/791/small/ed54537e0b6b3ffe.jpg" width="100%" alt="IKEA beim Westbahnhof in Wien. Eine gerüstartige Außenfassade begrünt mit übergroßen Pflanztöpfen.">
+<p>Also ihr wisst ja, dass ich letztes Jahr in Schweden im einzigen IKEA Hotel der Welt war. In Wien gibt es allerdings ein Innenstadt-IKEA mit einem Hostel auf dem Dach. </p>
+<p>Für die Seamless Learning Conference hab ich mich gleich mal hier einquartiert. Großartiges Gebäude. Allerdings fühlt sich das einfache Hostelbett gleich etwas unbequemer an, wenn ich an die luxuriösen Ausstellungsstücke im Stock unter mir denke.</p>
+<p>Noch viel lieber würde ich ja im IKEA übernachten. Wer schließt sich an?</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">11</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Apr</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/254/823/752/318/163/small/acc942ebf9e0b24e.jpg" width="100%" alt="Selfie von Ludwig, Kevin und Alina. (Links nach Rechts)">
+<p>Unverhofft kommt oft. Um genauer zu sein, sind Alina und Kevin auch zur Seamless Learning Conference nach Wien gekommen.</p>
+<p>Mit den beiden hatte ich ja gar nicht gerechnet. Tja, auf die Digitalchangemaker vom Hochschulforum Digitalisierung lässt sich wohl auf keiner Veranstaltung verzichten.</p>
+<p>Die beiden haben jetzt sogar zusammen einen Podcast: <a href="https://open.spotify.com/show/1ZAIjswxghP8myutpGRQxv?si=5a7cd056a8114f9b" target="_blank" rel="nofollow noopener noreferrer" translate="no"><span class="invisible">https://</span><span class="ellipsis">open.spotify.com/show/1ZAIjswx...</span></a></p>
+<p>Warum macht mit mir keiner einen Podcast? 😥 Uwe vom eTeach Netzwerk hat heute sogar meine schöne Stimme gelobt.</p>
+
+<p><em><strong>Anmerkung der Redaktion:</strong> Ludwig weiß zu diesem Moment noch nicht, dass ihn das Präsidium der Bauhaus-Uni in zwei Monaten bitten wird, einen Podcast über sie zu moderieren.</em></p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">12</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Apr</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/260/482/476/226/650/small/86ee66eaf1f29d6a.jpg" width="100%" alt="Infobildschirm im Zug">
+<p>In österreich hat der Infobildschirm die Stunde Verspätung vom Zug noch angezeigt. <br>Komisch, seitdem wir in der Schweiz sind fehlt die Info.</p>
+<p>Vielleicht schämt sich der Bildschirm...</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">13</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Apr</span>
+            </div>
+            <p>Lindenblütentee schmeckt ja richtig krass nach Honig... Hab ich bis jetzt nur Lindenblütenhonig gegessen?</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">14</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Apr</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/271/500/929/694/587/small/02d079ba38fa2b02.jpg" width="100%" alt="Ein Laptop auf einem Zugklapptisch vor einem sehr großen Fenster mit einer Berglandschaft.">
+<p>Ach ja, Studieren im Panoramawagon. Hab mir eine A0 Klappkarte des Schweizer Streckennetz im Reisezentrum besorgt und mich heute morgen auf der Fahrt nach Zürich erstmal mit dem Schaffner zusammengesetzt und mir jede schöne Stecke einzeichnen lassen.</p>
+<p>So bin ich auf den GoldenPass Express gekommen, mit dem Markus und ich heute gefahren sind. Dabei erzählt er mir von portugiesischen Dichtern (eigentlich nur einer mit mehreren Persönlichkeiten) und dem Briefwechsel Goethe und Schillers.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">15</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Apr</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://ludattel.de/newsletter/resources/2024/sommer/GIF_20240415.gif" width="100%" alt="Kurzes Video vom Gleis mit schneebedeckten Bergen auf dem langsam nach vorne gefahren wird.">
+<p>So geht Schnee: Weggesperrt hinter dreifach verglasten Scheiben im beheizten 1. Klasse Abteil des Glacier Express, der langsam am weiß bedeckten Bergpanorama zurück in den Frühling fährt.</p>
+<p>Kann ich damit auf der Jahreszeitenstempelkarte einen Winter ersetzen? Ich verzichte auch auf die fünfte Bonusjahreszeit. Mir fehlt jedes Jahr eh immer ein gutes Kostüm.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">22</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Apr</span>
+            </div>
+            <p>Aua. Das erste Mal Aikido im Semester bedeutet immer eine Menge blaue Flecken. Wie beim Fahrradfahren... Morgen wird es erfahrungsgemäß noch schlimmer.</p>
+<p>Das kenne ich zwar schon. Aber in diesem Semester habe ich ausgerechnet morgen meinen nächsten Sportkurs: Floorball. Puhh das wird anstrengend.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">23</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Apr</span>
+            </div>
+            <p>Ok, ich gebe es zu, Quantencomputer funktionieren nicht wirklich intuitiv. Einfach alle Berechnungen parallel ausführen und ausgeben funktioniert nicht.</p>
+<p>Quantenzustände sind wie eine Lootbox. Das spannende Ergebnis, wofür wir uns eigentlich interessieren, ist darin enthalten. Aber wir wissen nicht wie oft wir messen müssen, bis wir dieses Ergebnis tatsächlich bekommen.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">26</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Apr</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/339/333/098/226/693/small/0158714723bfdd57.jpg" width="100%" alt="Fenster mit einer Windows-XP-artigen Wiese. Davor ein angeschnalltes Fahrrad.">
+<p>Anscheinend bin ich doch in der Lage, mit meinem Fahrrad richtig viel Strecke zurückzulegen. (Mit etwas Hilfe vom Regionalverkehr)</p>
+<p>Wusstet ihr, dass die Mitnahme in Thüringen, Sachsen und Sachsen-Anhalt kostenlos ist? Wie praktisch, dass ich auf meiner Fahrt nach Dessau nur diese drei Bundesländer durchqueren muss. Das Kundenzentrum hat sogar Fahrradwerkzeug, falls mal eine kleine Panne passiert.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">27</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Apr</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/345/096/897/696/094/small/636367d4a708adbf.jpg" width="100%" alt="Links: Eingang in das ikonische Bauhaus Schulgebäude. Darüber eine hohe Glasfront. Rechts: viele kleine Balkone sind an der Fassade mit den Studierendenwohnungen gebaut">
+<p><strong>Bauhaus-Tag in Dessau</strong>: <p>Irgendwie unvorstellbar, was das Bauhaus bereits damals für eine Anziehungskraft als Ausbildungsort hatte. Nachdem die Thüringer Landesregierung (damals noch in Weimar) den Etat halbiert hat, wurde Gropius hofiert mit Alternativangeboten. Sogar Konrad Adenauer hatte damals Köln angeboten.<br>Letztendlich: Der Pazifist und Ingenieur Hugo Junkers (Flugzeuge) erwirkt mit einer großzügigen Förderung die Verlegung ins politisch (noch) liberale Dessau.</p></p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">28</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Apr</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/350/767/150/834/811/small/db78b251d454d7e7.jpg" width="100%" alt="Steingrotte mit einer kegelförmigen Erhöhung.">
+<p>&quot;Das Nützliche mit dem Schönen verbinden&quot;. Getreu seinem Motto brachte Fürst Franz von Anhalt-Dessau von seiner Großbritannien-Reise zwei englische Wasserpumpen mit. Eine für das Schloss, wo sie dort eigene Löschwasserreservoirs vor den Zentralkaminen auf jeder Etage versorgt.<br>Die andere für einen künstlichen Vulkan, der mit Hilfe der Pumpe und geschickter Lichteffekte, künstlich &quot;ausbrechen&quot; konnte. Klar, etwas protzig, aber das deutlich kreativere Statussymbol im Vergleich zu einem Auto.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">28</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Apr</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/350/739/484/985/773/small/9c0394ff8a9376ed.jpg" width="100%" alt="Bronzeskulptur des Schloss Luisiums mit einer Dessauer Plattenbauzeile im Hintergrund. Detailansicht des Stadtbrunnens.">
+<p><strong>Gartenreich-Tag in Dessau</strong>: <p>Mit einer Radtour (ja, ich kann anscheinend noch Fahrrad fahren)  erkunden Papa und ich ich das Dessau-Wörlitzer Gartenreich, dass Fürst Franz, der große &quot;Aufklärer&quot; der Region, Ende des 18. Jahrhunderts hat anlegen lassen.<br>Unser erster Stopp auf der Tour und letzter Stopp für den Fürst ist das Luisium kurz vor Dessau. Der Alterswohnsitz des Fürsten wirkt geradezu spartanisch. Insbesondere im Vergleich mit dem Wörlitzer Schloss, dass uns nach dem Elbradweg erwartet.</p></p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="chapter-start" style="display: flex;">
+    <div style="width: 30%; margin: auto;"><hr></div>
+    <div class="chapter-start-title" style="width: 30%">Mai</div>
+    <div style="width: 30%; margin: auto;"><hr></div>
+</div>
+
+<div class="timeline-article map">
+    <div class="content-right-container" style="width: 100%;">
+      
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            margin-top: 0px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+        
+<img style="margin-bottom:1em ;" src="https://ludattel.de/newsletter/resources/2024/sommer/map_05.png" width="100%" alt="Karte für Mai">
+
+            <div class="map-text-content" style="padding: 0px 25px 25px 25px;">
+            <p><strong>Unterwegs im Mai:</strong><br>
+Daniel nimmt mich mit auf eine <strong>Fahrradexpedition</strong> nach Jena. Die erste für mich seit Jahren. Das weiß anscheinend auch der Rollsplit auf den unasphaltierten Radwegen...</p>
+            </div>
+        </div>
+    </div>
+    <span class="timeline-author">Exklusiver Inhalt</span>
+</div>
+
+<div class="timeline-article feinedinge">
+    <div class="content-right-container" style="width: 100%;">
+    <img src="https://cloud.uni-weimar.de/apps/files_sharing/publicpreview/72PjWDocePPt2nq?x=1366&y=276&a=true&file=BackgroundEraser_20221114_003938711.png" alt="Avatar" style=" display: block; margin-left: auto; margin-right: auto; margin-top: 0px; width: 73%;">
+      <div class="content-right" style=" max-width: 100%; width:
+      auto; left: 0px; float: none; min-height: 53px;
+      position: relative;  border-radius: 10px;
+      z-index: -1;
+      background-color: rgb(246, 228, 125); box-shadow: 1px 10px
+      30px rgba(0,0,0,.03); padding: 25px 25px; margin-top: -120px; padding-top: 110px;"> 
+          <p>Kein Flohmarkt scheint vor Olli sicher zu sein: Ergattert er doch tatsächlich das originale Autobahn Album von Kraftwerk auf Vinyl für FÜNF EURO.</p>
+<img style="margin-top: 10px;margin-bottom: 10px;" src="https://social.bau-ha.us/system/media_attachments/files/112/367/915/745/499/023/small/b67664970afa2062.jpg" width="100%" alt="Vor einem Gartenzaun hält eine Hand eine Vinylplatze mit einer Autobahn und der Aufschrift "Kraftwerk Autobahn". Zwischen Platte und Daumen ist eine Kassette von Snow Patrol eingeklemmt.">
+<p>Aber auch Linda schnappt sich für 5 Euro waschechtes (nicht in der Spülmaschine) Lichte Porzellan.</p>
+<p>Falls Olli und Linda mal einen Flohmarkt machen, weiß ich also schon was ich mir hole.</p>
+<p>Ich hatte auf meiner Suche nach  Superfest Gläsern leider heute keinen Erfolg. Das ist ein speziell gehärtetes Glas aus der DDR, das ewig ganz bleibt. </p>
+<p><a href="https://social.bau-ha.us/tags/feinedinge" class="mention hashtag" rel="tag">#<span>feinedinge</span></a></p>
+      </div>
+      <span class="timeline-author">Exklusiver Inhalt</span> </div>
+  </div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">04</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Mai</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/385/054/248/539/581/small/c54b21c317ee979c.jpg" width="100%" alt="Selfie von Ludwig an einer Ampel. Vor ihm ein weiterer Radfahrer.">
+<p>Ich wollte eigentlich nur mit Daniel mein Fahrrad warten... Da schlägt er vor, doch zusammen eine Radtour nach Jena zu machen. </p>
+<p>Dank der deutschen Bahn, die entlang ihrer Bahnschienen Radstrecke bauen, war die Fahrt sehr schön und ich bin nur 1x hingefallen.</p>
+<p>Daniel meint, ich habe mich nicht schlecht geschlagen. Dann kann ich demnächst auch mal mit Agnes eine Radtour probieren. Das wäre das nächste Level meiner fahrradverückten Freunde.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">07</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Mai</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://ludattel.de/newsletter/resources/2024/sommer/GIF_20240507.gif" width="100%" alt="Ein Beutel mit Blut schaukelt hin und her">
+<p>Deutlich effizienter als jede Mücke in meinem Leben: Ich war heute Blut spenden und es hat gar nicht weh getan.</p>
+<p>Trotz veganer Ernährung: Es wurde ein exzellenter Eisenwert gemessen. Kaum zu glauben von der Frau, die die Messung durchgeführt hat.</p>
+<p>Jetzt dauert es noch vier Wochen und ich weiß endlich meine Blutgruppe.</p>
+<p>Nach der Spende fühle ich mich richtig befreit und gut. Habe sogar entgegen der Empfehlung Sport gemacht. Mysteriös.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">11</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Mai</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/424/653/336/536/211/small/582a767d5fcb889d.jpg" width="100%" alt="Eine dunkle Landschaft geht in einen farbigen Himmel über. Rot-blau Nebelstreifen und ein grün-gelber Nebelstreifen sind zu sehen">
+<p>Mitten im Filmabend wird der machinenraum von einer Eilmeldung überrumpelt...</p>
+<p>In Weimar sind gerade Polarlichter am Himmel?!</p>
+<p>Wir gehen raus in den Park. Na gut, der Himmel ist leicht rot, aber es könnte auch die Beleuchtung der Stadt sein.</p>
+<p>Wir schauen unseren Film zu Ende. Währenddessen erreichen mich immer mehr Bilder von Polarlichtern.</p>
+<p>Aurora fährt uns spontan auf einen Feldweg mitten im Dunkeln und tatsächlich können wir sie jetzt sehen. Der schwarze Himmel kennt auf einmal Farbe.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">20</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Mai</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://ludattel.de/newsletter/resources/2024/sommer/GIF_20240520.gif" width="100%" alt="Makroaufnahme von Sägespänen die über eine gelbe Holzplatte gepustet werden.">
+<p><span class="h-card" translate="no"><a href="https://social.bau-ha.us/@L4meo" class="u-url mention">Loui</a></span> und ich arbeiten an einer Konsolen-Konsole für den Machinenraum. <span class="h-card" translate="no"><a href="https://social.bau-ha.us/@L4meo" class="u-url mention">Loui</a></span> hat einen fetten Plan entwickelt nach dem wir heute zielstrebig Holz zersägt haben. </p>
+<p>Mit unseren produktiven Kreissägegeräuschen haben wir quasi auch einen Beitrag für das kollektive Co-Worken im M18 Garten geleistet. Immerhin haben die Leute regelmäßig von ihren Laptops aufgeschaut, um uns beim munteren Möbelbau zu beobachten.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">21</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Mai</span>
+            </div>
+            <p>Draußen ist der Himmel bedeckt, es regnet. Mit meiner kurzen Hose läuft mir ein Schauer den Rücken hinunter, wenn ich durch die Tür nach draußen gehe. Mein Körper stellt sich auf Zittern und Frieren ein, aber draußen ist es genauso warm wie drinnen. Es ist schwül.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">22</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Mai</span>
+            </div>
+            <p>Lebensmittelmotten gehören zu den Schmetterlingen – sie sind nur nicht so bunt. 🦋</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">28</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Mai</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/520/924/432/733/970/small/c823edbbaa2d10bd.jpg" width="100%" alt="Tonkrug in einen Hochbeet eingegraben und von Kräutern umgeben.">
+<p>Ich habe jetzt einen Tonkrug in meinem Hochbeet.</p>
+<p>Der ist mit Wasser gefüllt und gibt wie ein nasser Schwamm langsam Feuchtigkeit in die Erde ab.</p>
+<p>Nach demselben Prinzip funktionieren auch die Tonkegel auf denen die Plastikflaschen montiert sind. Sie werden von den Wurzeln der Pflanzen regelrecht umschlungen.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article plain">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">29</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Mai</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://ludattel.de/newsletter/resources/2024/sommer/20240909.jpg" width="100%" alt="Update">
+<p>Kleiner Blick in die Zukunft: Über die Monate macht sich der Tonkrug bemerkbar. Im September ist ein richtiger Kräuterwald entstanden, der wenn ich koche regelmäßig abgeerntet wird.</p>
+        </div>
+    </div>
+    <span class="timeline-author">Exklusiver Inhalt</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">29</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Mai</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/526/498/652/007/380/small/8972d5f3afcdffc2.jpg" width="100%" alt="Ludwig mit KiBa, Schirmchen und Strohhalm.">
+<p>Urgh. Mega stressiger Tag. Zwei Abgaben, Digitalwerkstatt und ich betreue einen Stand beim Tag der Lehre.</p>
+<p>Vergangenheits-Ludwig hat aber für mich vorgesorgt und Strohhalme + Schirmchen auf die Materialliste für den Workshop geschrieben. Hatte ich schon ganz vergessen, bis ich sie auf dem Stand gesehen habe. Die Freude war riesig.</p>
+<p>Ich muss mich ja nicht tot arbeiten.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="chapter-start" style="display: flex;">
+    <div style="width: 30%; margin: auto;"><hr></div>
+    <div class="chapter-start-title" style="width: 30%">Juni</div>
+    <div style="width: 30%; margin: auto;"><hr></div>
+</div>
+
+<div class="timeline-article map">
+    <div class="content-right-container" style="width: 100%;">
+      
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            margin-top: 0px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+        
+<img style="margin-bottom:1em ;" src="https://ludattel.de/newsletter/resources/2024/sommer/map_06.png" width="100%" alt="Karte für Juni">
+
+            <div class="map-text-content" style="padding: 0px 25px 25px 25px;">
+            <p><strong>Unterwegs im Juni:</strong><br>
+Für mich geht es zum <strong>University Future Festival</strong> nach Berlin, wo ich meine bisher größte Gameshow live moderiere. Hat die Arbeit denn nie ein Ende? Doch: Oma und ich machen endlich unseren <strong>Oma-Enkel-Trip</strong> nach Wien. Darauf habe ich mich schon lange gefreut.</p>
+            </div>
+        </div>
+    </div>
+    <span class="timeline-author">Exklusiver Inhalt</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">03</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jun</span>
+            </div>
+            <p>Urghh mein Fahrradschloss ist wieder so engagiert. Das will sich jetzt nicht mehr von meinem Schlüssel öffnen lassen. <br>Tolle Arbeitsmoral, aber jetzt muss mein Fahrrad die Nacht über am Theaterplatz stehen.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article plain">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">05</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jun</span>
+            </div>
+            <p>Mein erster Auftritt als Game-Show Moderator. Campus Clash - das ist ein von Lea, Kevin und mir entwickeltes Quizformat, bei dem drei Teams Fragen aus der Hochschulwelt beantworten. Das Layout für das Quiz habe ich basierend auf dem Spiel Jeopardy entwickelt und designt.  </p>
+<p><a href="https://www.youtube.com/embed/emQ9rRgiick">
+<img style="margin-bottom:1em ;" src="https://ludattel.de/newsletter/resources/2024/sommer/campusclash_thumbnail.png" width="100%" alt="Thumbnail vom Youtube Video.">
+</a></p>
+        </div>
+    </div>
+    <span class="timeline-author">Exklusiver Inhalt</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">06</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jun</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/571/897/118/409/457/small/5f377a985209b22b.jpg" width="100%" alt="Pepper Roboter mit Touch-Screen-Display. Im Hintergrund ein wissenschaftliches Poster.">
+<p>Hab heute beim University Future Festival Nachhilfeunterricht vom Roboter Pepper bekommen. &quot;Ich denke du hast noch Ausbaupotential bei deinen Lerninhalten. Aber keine Sorge, es sind noch 53 Tage bis zu deiner Prüfung.&quot;<br>Ist das die Zukunft? Immerhin: So geduldig ist bis jetzt kein Mensch mit mir.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">06</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jun</span>
+            </div>
+            <p>Warum sich meine 95 Minuten verspätete ICE Fahrt trotzdem wie ein Erfolgserlebnis anfühlt? <br>Habe einen Taxischein beim Zugpersonal rausgehandelt.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">12</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jun</span>
+            </div>
+            <p>Drei junge Eichelhäher nutzen unseren Hinterhof als Flugübungsplatz. Meistens lungern sie auf den Mülltonnen herum, aber wenn ich zum Fahrrad muss fliegen sie aufgeregt erstmal gegen die Hauswand.</p>
+<p>Komischer Zufall, dass mein Fahrrad seit gestern einen Platten am Hinterreifen hat. Haben die Eichelhäher etwa...</p>
+<p>Wo denke ich hin.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">19</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jun</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/645/521/890/100/121/small/297e408f8cc3faac.jpg" width="100%" alt="Auf einem Tisch liegt ein im Halbkreis zugeschnittenes laminiertes Papier mit Symbolen für Quantenzustände und Herzen. Darunter schimmert ein leuchtender Bogen durch. Ein rotes USB Kabel geht aus dem Gerät.">
+<p>Yayyy endlich wieder einen Bastel Workshop im machinenraum. Diesmal ein Leuchtbogen mit Quantenzustandsornament.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article plain">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">20</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jun</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://ludattel.de/newsletter/resources/2024/sommer/20240623-4.jpg" width="100%" alt="Bild von Oma und mir im musikalischen Vereinshörsaal">
+<p>Oma fliegt aus Köln, ich fahre mit dem Zug aus Weimar. Am späten Nachmittag kommen wir beide in Wien zusammen. Zusammen erkunden wir über das verlängerte Wochenende diese Metropole. Nach Hamburg, Frankfurt am Main und Den Haag ist es unsere nächste Städtereise zu zweit. Ich bin sehr gespannt, mich von Oma etwas rumführen zu lassen. Sie war ja schonmal hier.</p>
+        </div>
+    </div>
+    <span class="timeline-author">Exklusiver Inhalt</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">21</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jun</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/656/364/809/174/672/small/a5d14ca4873ba5b3.jpg" width="100%" alt="Eine typische Bauernwohnung mit gelben Regenmantel, Fenstereckbank, zwei Scheme und einem Holztisch. Auf dem Tisch ist eine Drohne mit Bauanleitung.">
+<p>In Kanada habe ich Karo für ihre spekulativen Designobjekte Modell gestanden. &quot;Spekulatives Design&quot; heißt attrapenartige Gegenstände für eine fiktive Zukunft gestalten.</p>
+<p>Im Wiener Museum für Angewandte Kunst (MAK) findet sich &quot;Spekulatives Design&quot; in vielen Exponaten. Diese Miniaturbauernwohnung erzählt von einer Welt ohne natürlichen Regen. In der letzten Not bringen Landwirte mit gebastelten Drohnen illegal Chemikalien in die Luft, um das Regnen zu erzwingen. Puppenhaus - Spannende Erzählform.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">22</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jun</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://ludattel.de/newsletter/resources/2024/sommer/GIF_20240622.gif" width="100%" alt="Eine Ameise fährt auf dem Haus einer Schnecke über eine Pfütze.">
+<p>Der zweite Tag in Wien beginnt mit Regen. Die Ameise im Schlosspark des Belvedere scheint sehr froh zu sein, dass sie eine Mitfahrgelegenheit über die Pfütze erwischt hat. </p>
+<p>&quot;Belvedere&quot; ist übrigens italienisch für &quot;Gute Aussicht&quot; - Die weiß wohl auch die Ameise zu schätzen.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">24</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jun</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/673/147/781/567/268/small/ac52721a05cf9bcf.jpg" width="100%" alt="ICE mit Regenbogen Streifen statt rotem Streifen. Schatten von Menschen werden durch das harte Abendlicht auf den Wagen geworfen.">
+<p>Ich darf nochmal mit dem Regenbogen ICE fahren :0</p>
+<p>Ist der nicht super selten?</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">25</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jun</span>
+            </div>
+            <p>Unser Physiological Computing Dozent wirkt (beunruhigend) begeistert, als er damit anfängt uns Kognitive Beanspruchung am Beispiel von Germany&#39;s Next Topmodel zu erklären:</p>
+<p>&quot;Kennt ihr die Stelle wo sich jede Staffel die Models eine andere Art zu gehen ausdenken müssen? Das ist gar nicht so einfach!&quot;</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">28</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jun</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/696/452/569/456/849/small/4147955eb6c8b01e.jpg" width="100%" alt="Eine Pfaff Nähmaschine mit einem Hai der gerade genäht wird.">
+<p>Heute beim &quot;DIHai&quot; Probeworkshop haben wir gemerkt, dass einen Kuschelhai zu nähen länger dauert als zwei Stunden. Überaschung.</p>
+<p>Wie gut, dass wir das beim Testdurchlauf germerkt haben. Insofern war der Probeworkshop ein richtiger Erfolg! Gut gemacht.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">29</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jun</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/702/137/895/494/684/small/286d48169dd6eb4a.jpg" width="100%" alt="Tasse mit dem Barcelona Chair von Mies Van der Rohe im Vordergrund. Im Hintergrund ein Stiftbecher.">
+<p>IKEA lädt mich ein, eine Tasse zu designen. Da überlege ich nicht zweimal...</p>
+<p>Ein großartiges Souvenir für eine großartige Conan Club Exkursion. Ich habe sogar 5€ dank der EM gespart. (Das ist mein schönstes Fußball Erlebnis seit ich bei der WM 2010 spät aufbleiben durfte und in Pokémon Perl Rotom in der Geistervilla gefangen habe!)</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article plain">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">29</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jun</span>
+            </div>
+            <p>Auf dem Rückweg von IKEA gibt es für den Detektiv Conan Club ein neues Rätsel zu lösen: Was ist eigentlich meine Blutgruppe? Ob dieser mysteriöse Brief vom Deutschen Roten Kreuz ein möglicher Hinweis sein könnte? Es wird ermittelt:</p>
+<p>
+<video style="padding-bottom: 0.5em;"
+  controls="controls" width="100%"> <source
+    src="https://ludattel.de/newsletter/resources/2024/sommer/VID_20240629.mp4" type="video/mp4">
+    <meta itemprop="description" content="Ludwig erfährt in diesem Video endlich seine Blutgruppe.">
+    Das Video kann in dieser Anzeige leider nicht abgespielt werden. Link zum Video: <a href="https://ludattel.de/newsletter/resources/2024/sommer/VID_20240629.mp4">Hier klicken!</a> 
+</video>
+</p>
+
+        </div>
+    </div>
+    <span class="timeline-author">Exklusiver Inhalt</span>
+</div>
+
+<div class="chapter-start" style="display: flex;">
+    <div style="width: 30%; margin: auto;"><hr></div>
+    <div class="chapter-start-title" style="width: 30%">Juli</div>
+    <div style="width: 30%; margin: auto;"><hr></div>
+</div>
+
+<div class="timeline-article map">
+    <div class="content-right-container" style="width: 100%;">
+      
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            margin-top: 0px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+        
+<img style="margin-bottom:1em ;" src="https://ludattel.de/newsletter/resources/2024/sommer/map_07.png" width="100%" alt="Karte für Juli">
+
+            <div class="map-text-content" style="padding: 0px 25px 25px 25px;">
+            <p><strong>Unterwegs im Juli:</strong><br>
+...nicht wirklich. Die Prüfungsphase macht den Juli zu einem heiß ersehnten Drinnie-Monat. Bevor ich für vier Monate nach Malta verschwinde, tut es gut noch einmal in Ruhe auf meinem Balkon zu sitzen und der Minze beim Wachsen zuzuschauen. Was macht eigentlich Arthur?</p>
+            </div>
+        </div>
+    </div>
+    <span class="timeline-author">Exklusiver Inhalt</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">09</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jul</span>
+            </div>
+            <p>Nach einem Semester Bälle mit dem Hockeyschläger ins Tor schießen hat das Sieb des Eratosthenes trotzdem noch eine höhere Trefferquote als ich. </p>
+<p>Aber Teamsport hat mir ziemlich Spaß gemacht!</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">12</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jul</span>
+            </div>
+            <p>Zum Ende des Sommersemesters werden bei uns auf der Summaery die vielen Projektarbeiten an der Uni präsentiert. Dort habe ich mich heute zum allerersten Mal mit einer SQL Injection in eine Dummy Webseite gehackt.</p>
+<p>Naja, eigentlich habe ich nur konzentriert und ratlos auf den Bildschirm geschaut, bis mir <span class="h-card" translate="no"><a href="https://social.bau-ha.us/@ZauberFeenPony" class="u-url mention">Nathalie</a></span> den nächsten Tipp gegeben hat. Das nennt sich dann übrigens Social Engineering ;)</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">19</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jul</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/815/162/129/584/132/small/62717e2502eb7341.jpg" width="100%" alt="Mehrere Froschsticker und ein Sticker mit einem Fuchshai liegen auf der Rückseite eines Zeichentablets.">
+<p>Karo und ich haben heute im <span class="h-card" translate="no"><a href="https://social.bau-ha.us/@maschinenraum" class="u-url mention">@<span>maschinenraum</span></a></span> Sticker gemacht. Während Karo analog ziemlich viel Frösche produziert hat, habe ich in der gleichen Zeit mit meinem Zeichentablet nur einen Fuchshai geschafft. </p>
+<p>Aber das war auch einer meiner ersten Versuche digital mit dem Tablet zu zeichnen. Bestimmt werde ich mit der Zeit schneller.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">23</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jul</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/837/909/633/025/802/small/1977fd8314ccd768.jpg" width="100%" alt="Eine im schwarzen Regenmantel gehüllte Person schaut in den Park. Es regnet">
+<p>Pauli und ich laufen im Regen durch den Park. Aber keine Pfütze glitzert so schön wie der Mannerbeutel aus Wien, den ich Pauli zum Geburtstag geschenkt hab.</p>
+<p>Er hat sogar das Prädikat &quot;mein schönstes Geburtstagsgeschenk&quot; bekommen. Der Beutel und ich freuen uns sehr darüber.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">25</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jul</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/849/344/967/896/582/small/3575a07a46c6b398.jpg" width="100%" alt="Selfie aus dem kasseturm vom Team Teabop.">
+<p>Woahh, völlig unerwartet kommen wir in der letzten Runde vom Quizzeturm ins Stechen. Jetzt  ruht die Hoffnung des Team Teabop auf meinen Schultern. Wie lang ist die Pont d&#39;Iena in Paris?</p>
+<p>...</p>
+<p>Und da ist er, der Rundensieg! Insgesamt Platz 2 von 25. Besser waren wir noch nie. Was für ein toller Tag!</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">26</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jul</span>
+            </div>
+            <p>Habe mitbekommen dass ChatGPT im Sprechmodus auch auf Deutsch antworten kann. Mit der Stimme Ember gibt es einen offensichtlichen englischen Akzent.</p>
+<p>Eigentlich schön. Ich fühle mich wie im Film &quot;Ich bin dein Mensch&quot; von Maria Schrader.<br>Wahrscheinlich hat OpenAI nicht nur Scarlett Johansson, sondern auch Dan Stevens für seine Stimme angefragt.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">27</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jul</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://social.bau-ha.us/system/media_attachments/files/112/860/638/185/517/164/small/dfa873299d1fb1cc.jpg" width="100%" alt="Schriftprobe aus einer MindMap zu Deep Learning Foundations">
+<p>Hab diesen schicken schwarzen Muji Kugelschreiber für meine Prüfungsvorbereitung. Wenn es beim Lernen später wird, kommt mir die Schrift aber fast schon blau vor. Dann geh ich immer ins Bett.</p>
+<p>Heute stellt sich heraus die Farbe des Stifts ist tatsächlich schwarz-blau. Mein lieber Scholli. Das hat mich jetzt ganz schön überrumpelt.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border-radius: 10px;
+            padding: 25px 25px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">29</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">Jul</span>
+            </div>
+            
+<img style="margin-bottom:1em ;" src="https://ludattel.de/newsletter/resources/2024/sommer/20240729.jpg" width="100%" alt="Bild von Nils und mir">
+<p>Nils und ich wollen zusammen Risotto kochen und kaufen unabhängig Zutaten. Ohne ein Rezept abgesprochen zu haben kommen wir beide auf die Idee Salbei einzukaufen :D</p>
+<p>Komischer Zufall. Ich habe so lange nicht mehr mit Salbei gekocht. Mal sehen was mir noch so einfällt.</p>
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+
+
+			<!-- // Vertical Timeline -->
+			</div>
+		</section>
+
+		<div style="width: 80%; margin: 0 auto; margin-top: 50px;"><hr></div>
+		<div style="width: 60%; margin: 0 auto; padding-bottom: 2em;
+			text-align: center; font-size: 0.6em;">
+
+Der Newsletter wird nicht richtig angezeigt? <a href="https://ludattel.de/newsletter/archive/2024/sommer_part_1">Klicke Hier</a> um dir die Online-Version anzusehen. <br> <br>
+			Du erhältst diesen Newsletter, weil Du dich für das Leben von Ludwig Lorenz interessierst oder nur ausversehen abonniert hast.
+			Und weil ich mich nach dem Datenverlust an deine E-Mail Adresse erinnern konnte. <br> Herzlichen Glückwunsch dafür! <br>
+			Damit diese Mails zuverlässig zugestellt werden, füge bitte die Adresse ludwignews@gmx.de zu deinem Adressbuch hinzu. <br>
+			Frühere Ausgaben der Ludwig-News sind gegebenenfalls über eine direkte Anfrage an ludwignews@gmx.de erhältlich. Deine
+			Privatsphäre ist uns wichtig.<br>
+			<br>
+			Du kannst diesen Newsletter jederzeit abbestellen. Klicken dazu
+			hier: <br>
+			<a href="mailto:ludwignews@gmx.de?subject=%5BAbbestellen%5D%20Hiermit%20k%C3%BCndige%20ich%20mein%20LudwigNews-Abonnement&amp;body=Schade%2C%20dass%20Sie%20uns%20verlassen!%0A%0ATeilen%20Sie%20uns%20hier%20gern%20den%20Grund%20ihrer%20Abbestellung%20mit%3A%0A%0A%5BGrund%20hier%20einf%C3%BCgen%5D">Abbestellen</a>
+		</div>
+
+	</div>
+
+</body>
+</html>
+

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="published-on" content="[insert iso-timestamp]">
+  <meta name="newsletter-starts" content="[insert newsletter-starts]">
+  <meta name="newsletter-ends" content="[insert newsletter-ends]">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Ludwig's Newsletter</title>
+  <style>
+	  
+	:root {
+		--background-color: #c3f5ee;
+		/*--cross-color-a: #bedbdd;
+		--cross-color-b: #dbffa1;*/
+		--cross-color: #f8d3e7;
+		--cross-color-a: #a0abac;
+		--snowflake-size: 200px;
+  		--snowflake-color: rgba(255, 255, 255, 0.3);
+		--cross-color-b: #f1a1ff;
+		--cross-color-b-alpha: #e40a0e66;
+		--button-color: #c9317d;
+		--card-color: #fefefe;
+	}
+
+	.button {
+		box-shadow: 10px 10px 0px rgba(200,100,0,.3);
+		background-color: var(--button-color);
+		color: var(--card-color);
+		margin-bottom: 15px;
+		padding: 7px;
+	}
+
+	.button:hover {
+		box-shadow: 6px 6px 0px rgba(200,100,0,.3);
+		transform: translate(4px, 4px);
+		filter: brightness(125%);
+	}
+
+	img, video {
+		border-radius: 10px;
+	}
+
+	hr {
+		color: var(--button-color);
+	}
+
+
+	body	{
+		[insert background]
+			/*background-image:
+			radial-gradient(circle at 100% 150%, var(--background-color) 24%, var(--cross-color-a) 24%, var(--cross-color-a) 28%, var(--background-color) 28%, var(--background-color) 36%, var(--cross-color-a) 36%, var(--cross-color-a) 40%, transparent 40%, transparent),
+			radial-gradient(circle at 0    150%, var(--background-color) 24%, var(--cross-color-a) 24%, var(--cross-color-a) 28%, var(--background-color) 28%, var(--background-color) 36%, var(--cross-color-a) 36%, var(--cross-color-a) 40%, transparent 40%, transparent),
+			radial-gradient(circle at 50%  100%, var(--cross-color-a) 10%, var(--background-color) 10%, var(--background-color) 23%, var(--cross-color-b) 23%, var(--cross-color-b) 30%, var(--background-color) 30%, var(--background-color) 43%, var(--cross-color-a) 43%, var(--cross-color-a) 50%, var(--background-color) 50%, var(--background-color) 63%, var(--cross-color-a) 63%, var(--cross-color-a) 71%, transparent 71%, transparent),
+			radial-gradient(circle at 100% 50%, var(--cross-color-a) 5%, var(--background-color) 5%, var(--background-color) 15%, var(--cross-color-b) 15%, var(--cross-color-b) 20%, var(--background-color) 20%, var(--background-color) 29%, var(--cross-color-a) 29%, var(--cross-color-a) 34%, var(--background-color) 34%, var(--background-color) 44%, var(--cross-color-a) 44%, var(--cross-color-a) 49%, transparent 49%, transparent),
+			radial-gradient(circle at 0    50%, var(--cross-color-a) 5%, var(--background-color) 5%, var(--background-color) 15%, var(--cross-color-b) 15%, var(--cross-color-b) 20%, var(--background-color) 20%, var(--background-color) 29%, var(--cross-color-a) 29%, var(--cross-color-a) 34%, var(--background-color) 34%, var(--background-color) 44%, var(--cross-color-a) 44%, var(--cross-color-a) 49%, transparent 49%, transparent);
+		background-size: 200px 100px;*/
+		margin: 0;
+		padding: 0;
+		font-family: Verdana, sans-serif;
+		color: var(--button-color);
+	}
+
+	.debug {
+		border: 2px dashed #ddd;
+		border-radius: 10px;
+	}
+
+	.box {
+		width: 90%;
+	}
+
+	.content-right {
+		font-size: 19px;
+	}
+
+	@media only screen and (min-width: 660px) {
+		.box {
+			width: 600px;
+		}
+	}
+
+	@media only screen and (min-width: 400px) {
+		h1 {
+			font-size: 2.8em;
+		}
+
+		#newsletter-title {
+		font-size: 1.3em !important;
+		}
+
+		#newsletter-pretitle {
+		font-size: 0.7em !important; 
+		}
+	}
+
+	/*===== Vertical Timeline =====*/
+	#conference-timeline {
+	  position: relative;
+	  max-width: 920px;
+	  width: 100%;
+	  margin: 0 auto;
+	}
+	#conference-timeline .timeline-start,
+	#conference-timeline .timeline-end {
+	  display: table;
+	  font-family: "Roboto", sans-serif;
+	  font-size: 18px;
+	  font-weight: 900;
+	  text-transform: uppercase;
+	  background: var(--button-color);
+	  padding: 15px 23px;
+	  color: #fff;
+	  max-width: 5%;
+	  width: 100%;
+	  text-align: center;
+	  margin: 3%
+	}
+
+	.chapter-start-title {
+	  display: table;
+	  font-family: "Roboto", sans-serif;
+	  font-size: 2em;
+	  font-weight: 900;
+	  text-transform: uppercase;
+	  padding: 15px 23px;
+	  color: var(--button-color);
+	  max-width: 5%;
+	  width: 100%;
+	  text-align: center;
+	  margin: 3%
+	}
+
+	#conference-timeline .conference-center-line {
+	  position: absolute;
+	  margin-left: 3%;
+	  left: 50px;
+	  width: 3px;
+	  height: 100%;
+	  top: 0;
+	  margin-left: -2px;
+	  background: var(--button-color);
+	  z-index: -1;
+	}
+	#conference-timeline .conference-timeline-content {
+	  padding-top: 37px;
+	}
+
+	.timeline-article {
+	  width: 100%;
+	  height: auto;
+	  position: relative;
+	  overflow: hidden;
+	  margin: 10px 0;
+	}
+
+	.timeline-article, .top-article {
+	color: #242424;
+	  font-family: Vollkorn;
+	  font-size: 20px;
+	  line-height: 24px;
+	}
+
+	.top-article {
+	  width: 100%;
+	  height: auto;
+	  position: relative;
+	  overflow: hidden;
+	  margin: 20px 0;
+	}
+
+	.timeline-article .timeline-author {
+	  display: block;
+	  font-weight: 400;
+	  font-size: 14px;
+	  line-height: 24px;
+	  color: #24242471;
+	  text-align: right;
+	}
+
+	.content-right p {
+	  margin: 1% 1%;
+	  margin-top: 0.5em;
+	  padding: 0;
+	  font-weight: 400;
+	  position: relative;
+	}
+	.timeline-article p span.article-number {
+	  position: absolute;
+	  font-weight: 300;
+	  font-size: 44px;
+	  top: 10px;
+	  left: -60px;
+	  color: var(--button-color);
+	}
+	.timeline-article .content-left-container {
+	  float: left;
+	}
+	.timeline-article .content-right-container {
+	  float: right;
+	}
+	.timeline-article .content-left:before,
+	.timeline-article .content-right:before{
+	  position: absolute;
+	  top: 20px;
+	  font-size: 23px;
+	  font-family: "FontAwesome";
+	  color: #fff;
+	}
+
+	/*===== // Vertical Timeline =====*/
+
+	/*===== // Resonsive Vertical Timeline =====*/
+  </style>
+
+</head>
+
+<body>
+  <!-- Vertical Timeline -->
+  <div class="box" style="max-width: 600px; margin: auto; margin-top: 30px">
+
+      <h1 style="margin: 30px 0px; text-align: center; font-family: 'Gill Sans', 'Gill
+        Sans MT', Calibri, 'Trebuchet MS', sans-serif; background:
+        inherit; filter: invert(1); mix-blend-mode: difference; 
+        font-size: 45px;">
+        <div id="newsletter-pretitle" style="font-size: 0.5em; font-family: cursive;">Ludwig's</div>
+        <div id="newsletter-title" style="font-size: 1em; line-height: 0.8em;">[insert newsletter title]</div>
+        <div style="margin-top: 0.3em; font-size: 0.6em;">- # [insert newsletter number] -</div>
+      </h1>
+
+[insert introduction]
+
+		<section id="conference-timeline">
+
+			<div class="conference-timeline-content">
+
+[insert articles]
+
+			<!-- // Vertical Timeline -->
+			</div>
+		</section>
+
+		<div style="width: 80%; margin: 0 auto; margin-top: 50px;"><hr></div>
+		<div style="width: 60%; margin: 0 auto; padding-bottom: 2em;
+			text-align: center; font-size: 0.6em;">
+
+Der Newsletter wird nicht richtig angezeigt? <a href="https://ludattel.de/newsletter/archive/2023/April">Klicke Hier</a> um dir die Online-Version anzusehen. <br> <br>
+			Du erhältst diesen Newsletter, weil Du dich für das Leben von Ludwig Lorenz interessierst oder nur ausversehen abonniert hast.
+			Und weil ich mich nach dem Datenverlust an deine E-Mail Adresse erinnern konnte. <br> Herzlichen Glückwunsch dafür! <br>
+			Damit diese Mails zuverlässig zugestellt werden, füge bitte die Adresse ludwignews@gmx.de zu deinem Adressbuch hinzu. <br>
+			Frühere Ausgaben der Ludwig-News sind gegebenenfalls über eine direkte Anfrage an ludwignews@gmx.de erhältlich. Deine
+			Privatsphäre ist uns wichtig.<br>
+			<br>
+			Du kannst diesen Newsletter jederzeit abbestellen. Klicken dazu
+			hier: <br>
+			<a href="mailto:ludwignews@gmx.de?subject=%5BAbbestellen%5D%20Hiermit%20k%C3%BCndige%20ich%20mein%20LudwigNews-Abonnement&amp;body=Schade%2C%20dass%20Sie%20uns%20verlassen!%0A%0ATeilen%20Sie%20uns%20hier%20gern%20den%20Grund%20ihrer%20Abbestellung%20mit%3A%0A%0A%5BGrund%20hier%20einf%C3%BCgen%5D">Abbestellen</a>
+		</div>
+
+	</div>
+
+</body>
+</html>
+

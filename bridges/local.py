@@ -5,14 +5,16 @@ import sys
 months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
 
 def fit_text(text):
-    while text and text[0] == "\n" or text[0] == " ":
+    if not text:
+        return text
+    while text and (text[0] in ["\n", " "]):
         text = text[1:]
-    while text and text[-1] == "\n" or text[-1] == " ":
+    while text and (text[-1] in ["\n", " "]):
         text = text[:-1]
     return text
     
 def parse_media(root, article_class):
-    media = {"type": "no media"}
+    media = {}
     if root.startswith("!["):
         media = {}
         media["media alt"] = root[2:root.find("]")]
@@ -100,8 +102,8 @@ def extract_dates_from_markdown(content):
     post = parse_frontmatter(content)
     
     if 'start' in post.keys() and 'end' in post.keys():
-        start_date = parser.parse(post['start'])
-        end_date = parser.parse(post['end'])
+        start_date = datetime.strptime(post["start"], "%d.%m.%Y")
+        end_date = datetime.strptime(post["end"], "%d.%m.%Y")
         return start_date, end_date
     else:
         return None, None
@@ -144,7 +146,9 @@ def fetch_content(local_linking=False):
     # parse timeline
     articles = []
     articles_raw = h1_level[2].split("\n## ")
-    for raw_article in articles_raw[1:]:
-        articles.append(fetch_local_article(raw_article))
+    for index, raw_article in enumerate(articles_raw[1:]):
+        article = fetch_local_article(raw_article)
+        article["source_index"] = str(index)
+        articles.append(article)
     news["articles"] = articles
     return news

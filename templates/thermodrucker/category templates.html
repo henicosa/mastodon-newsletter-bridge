@@ -1,0 +1,1007 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="published-on" content="[insert iso-timestamp]">
+  <meta name="newsletter-starts" content="[insert newsletter-starts]">
+  <meta name="newsletter-ends" content="[insert newsletter-ends]">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Ludwig's Newsletter</title>
+  <style>
+	  
+	:root {
+		--background-color: #fff8f8;
+		/*--cross-color-a: #bedbdd;
+		--cross-color-b: #dbffa1;*/
+		--cross-color-a: #a0abac;
+		--cross-color-b: #f1a1ff;
+		--cross-color-b-alpha: #f1a1ff66;
+		--button-color: #3d3963;
+		--card-color: #ffefef;
+	}
+
+	.button {
+		box-shadow: 10px 10px 0px rgba(200,100,0,.3);
+		background-color: var(--button-color);
+		color: var(--card-color);
+		margin-bottom: 15px;
+		padding: 7px;
+	}
+
+	.button:hover {
+		box-shadow: 6px 6px 0px rgba(200,100,0,.3);
+		transform: translate(4px, 4px);
+		filter: brightness(125%);
+	}
+
+	img, video {
+		border-radius: 10px;
+	}
+
+	hr {
+		color: var(--button-color);
+	}
+
+	body {
+		/*background: var(--background-color);
+		background-image: linear-gradient(90deg, var(--cross-color-b-alpha) 45%, transparent 0),
+			linear-gradient(var(--cross-color-b-alpha) 45%, transparent 0);
+		background-size: 100px 100px; 
+		background-position: 0 0, 0 0, -50px -50px, 50px 50px; */
+		/* Background pattern by Lea Verou*/
+		/*background-image:
+			radial-gradient(circle at 100% 150%, var(--background-color) 24%, var(--cross-color-a) 24%, var(--cross-color-a) 28%, var(--background-color) 28%, var(--background-color) 36%, var(--cross-color-a) 36%, var(--cross-color-a) 40%, transparent 40%, transparent),
+			radial-gradient(circle at 0    150%, var(--background-color) 24%, var(--cross-color-a) 24%, var(--cross-color-a) 28%, var(--background-color) 28%, var(--background-color) 36%, var(--cross-color-a) 36%, var(--cross-color-a) 40%, transparent 40%, transparent),
+			radial-gradient(circle at 50%  100%, var(--cross-color-a) 10%, var(--background-color) 10%, var(--background-color) 23%, var(--cross-color-b) 23%, var(--cross-color-b) 30%, var(--background-color) 30%, var(--background-color) 43%, var(--cross-color-a) 43%, var(--cross-color-a) 50%, var(--background-color) 50%, var(--background-color) 63%, var(--cross-color-a) 63%, var(--cross-color-a) 71%, transparent 71%, transparent),
+			radial-gradient(circle at 100% 50%, var(--cross-color-a) 5%, var(--background-color) 5%, var(--background-color) 15%, var(--cross-color-b) 15%, var(--cross-color-b) 20%, var(--background-color) 20%, var(--background-color) 29%, var(--cross-color-a) 29%, var(--cross-color-a) 34%, var(--background-color) 34%, var(--background-color) 44%, var(--cross-color-a) 44%, var(--cross-color-a) 49%, transparent 49%, transparent),
+			radial-gradient(circle at 0    50%, var(--cross-color-a) 5%, var(--background-color) 5%, var(--background-color) 15%, var(--cross-color-b) 15%, var(--cross-color-b) 20%, var(--background-color) 20%, var(--background-color) 29%, var(--cross-color-a) 29%, var(--cross-color-a) 34%, var(--background-color) 34%, var(--background-color) 44%, var(--cross-color-a) 44%, var(--cross-color-a) 49%, transparent 49%, transparent);
+		background-size: 200px 100px;*/
+		margin: 0;
+		padding: 0;
+		font-family: Verdana, sans-serif;
+		color: var(--button-color);
+	}
+
+	.debug {
+		border: 2px dashed #ddd;
+		border-radius: 10px;
+	}
+
+	.box {
+		width: 90%;
+	}
+
+	.content-right {
+		font-size: 17px;
+	}
+
+	@media only screen and (min-width: 660px) {
+		.box {
+			width: 600px;
+		}
+	}
+
+	@media only screen and (min-width: 400px) {
+		h1 {
+			font-size: 2.8em;
+		}
+	}
+
+	/*===== Vertical Timeline =====*/
+	#conference-timeline {
+	  position: relative;
+	  max-width: 920px;
+	  width: 100%;
+	  margin: 0 auto;
+	}
+	#conference-timeline .timeline-start,
+	#conference-timeline .timeline-end {
+	  display: table;
+	  font-family: "Roboto", sans-serif;
+	  font-size: 18px;
+	  font-weight: 900;
+	  text-transform: uppercase;
+	  background: var(--button-color);
+	  padding: 15px 23px;
+	  color: #fff;
+	  max-width: 5%;
+	  width: 100%;
+	  text-align: center;
+	  margin: 3%
+	}
+
+	.chapter-start-title {
+	  display: table;
+	  font-family: "Roboto", sans-serif;
+	  font-size: 2em;
+	  font-weight: 900;
+	  text-transform: uppercase;
+	  padding: 15px 23px;
+	  color: var(--button-color);
+	  max-width: 5%;
+	  width: 100%;
+	  text-align: center;
+	  margin: 3%
+	}
+
+	#conference-timeline .conference-center-line {
+	  position: absolute;
+	  margin-left: 3%;
+	  left: 50px;
+	  width: 3px;
+	  height: 100%;
+	  top: 0;
+	  margin-left: -2px;
+	  background: var(--button-color);
+	  z-index: -1;
+	}
+	#conference-timeline .conference-timeline-content {
+	  padding-top: 37px;
+	}
+
+	.timeline-article {
+	  width: 100%;
+	  height: auto;
+	  position: relative;
+	  overflow: hidden;
+	  margin: 10px 0;
+	}
+
+	.top-article {
+	  width: 100%;
+	  height: auto;
+	  position: relative;
+	  overflow: hidden;
+	  margin: 20px 0;
+	}
+
+  .plain-article {
+	  width: 100%;
+	  height: auto;
+	  position: relative;
+	  overflow: hidden;
+	  margin: 10px 0;
+	}
+
+	.timeline-article .timeline-author {
+	  display: block;
+	  font-weight: 400;
+	  font-size: 0.8rem;
+	  color: #24242471;
+	  text-align: right;
+	}
+
+	.content-right p {
+	  margin: 1% 1%;
+	  margin-top: 0.5em;
+	  padding: 0;
+	  font-weight: 400;
+	  color: #242424;
+	  font-family: Vollkorn;
+	  font-size: 18px;
+	  line-height: 24px;
+	  position: relative;
+	}
+
+  .content-right > p:first-child {
+
+  }
+
+	.timeline-article p span.article-number {
+	  position: absolute;
+	  font-weight: 300;
+	  font-size: 44px;
+	  top: 10px;
+	  left: -60px;
+	  color: var(--button-color);
+	}
+	.timeline-article .content-left-container {
+	  float: left;
+	}
+	.timeline-article .content-right-container {
+	  float: right;
+	}
+	.timeline-article .content-left:before,
+	.timeline-article .content-right:before{
+	  position: absolute;
+	  top: 20px;
+	  font-size: 23px;
+	  font-family: "FontAwesome";
+	  color: #fff;
+	}
+
+	/*===== // Vertical Timeline =====*/
+
+	/*===== // Resonsive Vertical Timeline =====*/
+  </style>
+
+</head>
+
+<body>
+
+  <?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 2340" xmlns:bx="https://boxy-svg.com" style="position: absolute; top: 0; z-index: -50;">
+  <defs>
+    <linearGradient gradientUnits="userSpaceOnUse" bx:pinned="true" id="color-3">
+      <title>turkis</title>
+      <stop style="stop-color: rgb(4, 105, 111);"/>
+    </linearGradient>
+  </defs>
+  <path style="fill: url(&quot;#color-3&quot;); fill-opacity: 0.3;" d="M 0 1349.273 C 10.147 1264.69 460.796 1314.263 314.917 1715.929 C 310.104 1726.974 364.573 1712.315 381.122 1781.105 C 387.293 1705.188 367.413 1546.457 561.471 1500 C 576.941 1526.078 547.499 1149.603 815.443 1050.279 C 770.741 1050.198 561.755 566.715 1100 500 L 1100 0 L 0 0 L 0 1349.273 Z">
+    <title>cloud3</title>
+  </path>
+  <path style="fill: url(&quot;#color-3&quot;); fill-opacity: 0.36;" d="M 0.072 1459.018 C 0.072 1459.018 339.455 1489.832 232.798 1891.5 C 232.798 1891.5 303.146 1905.116 319.032 2002.696 C 319.032 2002.696 325.839 1852.922 496.038 1855.191 C 496.038 1855.191 457.46 1505.717 818.28 1512.525 C 813.233 1510.282 799.743 1206.863 1100 1174.398 L 1100 0 L 0 0 L 0.072 1459.018 Z">
+    <title>cloud2</title>
+  </path>
+  <path style="fill: url(&quot;#color-3&quot;); fill-opacity: 0.14;" d="M 0 2064.071 C 37.224 2035.147 310.679 1972.067 375.437 2267.655 C 410.679 2164.828 628.912 2000 800 2227.991 C 799.672 2156.702 845.873 2041.022 1000 2074.789 C 1000 2072.876 950.24 1939.195 1100 1872.009 C 1098.73 1891.052 1100 0 1100 0 L -5.454 0 L 0 2064.071 Z" id="object-0">
+    <title>cloud1</title>
+  </path>
+</svg>
+
+  <div class="box" style="max-width: 600px; margin: auto">
+
+    <h1 style="text-align: center; 
+      font-family: 'Vollkorn Black';
+      font-size: 45px; 
+      margin: 30px, 0;
+      color: #ffffff;
+      margin-top: 40px;
+    ">
+      <div style="font-size: 0.7em; font-family: 'Indie Flower';">Ludwig's</div>
+      <div style="font-size: 1.3em; line-height: 0.8em;">Neuer Newsletter</div>
+      <div style="margin-top: 0.3em; font-size: 0.6em;">- # 14 -</div>
+    </h1>
+
+[begin introduction html]
+<div class="top-article">
+        <div class="content-right" style="
+            margin-top: 100px;
+            width: auto;
+            max-width: 100%;
+            filter: brightness(125%);
+            position: relative;
+             
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,.03);
+            padding: 5px 5px;
+            padding-top: 60px;">
+            <img src="[insert media link]" alt="[insert media alt]" style="
+                border-radius: 50%;
+                width: 150px;
+                height: 150px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 25px;
+                margin-top: -150px;
+                color: #fff;
+                border-radius: 100%;">
+            [insert root]
+        </div>
+    <span class="timeline-author">[insert media alt]</span>
+</div>
+[end introduction html]
+
+<!--
+[begin introduction text]
+[insert root]
+
+- [insert media alt]
+[end introduction text]
+-->
+
+
+[begin introduction-abroad html]
+<div class="top-article">
+    <div class="content-border" style="
+        z-index: -1;
+        background: repeating-linear-gradient(-45deg, #f00 0, #f00 10px, #fff 10px, #fff 20px, #00f 20px, #00f 30px, #fff 30px, #fff 40px);
+        padding: 10px;
+        border-radius: 10px;
+        margin-top: 80px;">
+        <div class="content-right" style="
+            width: auto;
+            max-width: 100%;
+            filter: brightness(125%);
+            position: relative;
+            border: 2px solid var(--button-color);
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,.03);
+            padding: 5px 5px;
+            padding-top: 60px;">
+            <img src="[insert media link]" alt="[insert media alt]" style="
+                border-radius: 50%;
+                width: 150px;
+                height: 150px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 25px;
+                margin-top: -150px;
+                color: #fff;
+                border-radius: 100%;">
+            [insert root]
+        </div>
+    </div>
+    <span class="timeline-author">[insert media alt]</span>
+</div>
+[end introduction-abroad html]
+
+<!--
+[begin introduction-abroad text]
+[insert root]
+
+- [insert media alt]
+[end introduction-abroad text]
+-->
+
+[begin chapter html]
+<div class="chapter-start" style="display: flex;">
+    <div style="width: 30%; margin: auto;"><hr></div>
+    <div class="chapter-start-title" style="width: 30%">[insert full_month]</div>
+    <div style="width: 30%; margin: auto;"><hr></div>
+</div>
+[end chapter html]
+
+<!--
+[begin chapter text]
+
+
+-=-=-=-=-=-=-=-
+[insert full_month]
+-=-=-=-=-=-=-=-
+
+
+[end chapter text]
+-->
+
+[begin article html]
+<div class="timeline-article plain">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border: 2px solid var(--button-color);
+            border-radius: 10px;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: -10mm;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">[insert date]</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">[insert month]</span>
+            </div>
+            [insert root]
+        </div>
+    </div>
+    <span class="timeline-author">[insert source]</span>
+</div>
+[end article html]
+
+
+[begin article-mastodon html]
+<div class="timeline-article mastodon">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            margin-top: 30px;
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: -10mm;
+  
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 30px;
+                    line-height: 40px;
+                ">[insert date]</span>
+                <span class="month" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 18px;
+                    line-height: 10px;
+                ">[insert month]</span>
+            </div>
+            [insert root]
+        </div>
+    </div>
+    <span class="timeline-author">mastodon:
+      @viji5369@social.bau-ha.us</span>
+</div>
+[end article-mastodon html]
+
+
+<!--
+[begin article text]
+------o [insert date].[insert month_num] o------
+[insert root]
+
+- [insert source]
+---------------------
+[end article text]
+-->
+
+<!--
+[begin article-mastodon text]
+------o [insert date].[insert month_num] o------
+
+[insert media]
+[insert root]
+
+- [insert source]
+---------------------
+[end article-mastodon text]
+-->
+
+[begin map html]
+<div class="timeline-article map">
+    <div class="content-right-container" style="width: 100%;">
+      
+        <div class="content-right" style="							
+            position: relative;
+            border: 2px solid var(--button-color);
+            border-radius: 10px;
+            margin-top: 0px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+        [insert media]
+            <div class="map-text-content" style="padding: 0px 25px 25px 25px;">
+            [insert root]
+            </div>
+        </div>
+    </div>
+    <span class="timeline-author">[insert source]</span>
+</div>
+[end map html]
+
+<!--
+[begin map text]
+------o Überblick o------
+[insert media]
+[insert root]
+
+- [insert source]
+---------------------
+[end map text]
+-->
+
+[begin media image html]
+<figure>
+<img src="[insert media link]" width="100%" alt="[insert media alt]">
+<figcaption>
+[insert media alt]
+</figcaption>
+</figure>
+[end media image html]
+
+<!--
+[begin media image text]
+
+> Bild <
+[insert media alt]
+Link: [insert media link]
+
+[end media image text]
+-->
+
+[begin media gif html]
+<p>
+<video style="margin-bottom: 1em;" autoplay="autoplay" loop="" width="100%">
+    <source src="[insert media link]" type="video/mp4">
+    <meta itemprop="description" content="[insert media alt]">
+    <br> Link zum Video: <a href="[insert media link]">Hier klicken</a>
+</video>
+</p>
+[end media gif html]
+
+<!--
+[begin media gif text]
+
+> Animiertes Bild <
+[insert media alt]
+Link: [insert media link]
+
+[end media gif text]
+-->
+
+[begin media video html]
+<p>
+<video style="padding-bottom: 0.5em;"
+  controls="controls" width="100%"> <source
+    src="[insert media link]" type="video/mp4">
+    <meta itemprop="description" content="[insert media alt]">
+    Das Video kann in dieser Anzeige leider nicht abgespielt werden. Link zum Video: <a href="[insert media link]">Hier klicken!</a> 
+</video>
+</p>
+[end media video html]
+
+
+<!--
+[begin media video text]
+
+> Video <
+Inhalt: [insert media alt]
+Videolink: [insert media link]
+
+[end media video text]
+-->
+
+[begin media audio html]
+<p>
+<audio style="padding-bottom: 0.5em; width:100%" controls="controls">
+  <source src="[insert media link]" type="audio/mp3">
+  <meta itemprop="description" content="[insert media alt]">
+  Die Audiodatei kann in dieser Anzeige leider nicht abgespielt werden. Link zur Audiodatei: <a href="[insert media link]">Hier klicken!</a>
+</audio>
+</p>
+[end media audio html]
+
+<!--
+[begin media audio text]
+
+>      Audio      <
+Inhalt: [insert media alt]
+Audiolink: [insert media link]
+> --------------- <
+
+[end media audio text]
+-->
+
+
+[begin video html]
+<div class="timeline-article">
+    <div class="content-right-container" style=" width: 100%; ">
+      <div class="content-right" style=" max-width: 100%; width:
+        auto; left: 0px; float: none; min-height: 53px;
+        position: relative; border: 2px solid
+        var(--button-color); border-radius: 10px;
+        background-color: var(--card-color); box-shadow: 1px 10px
+        30px rgba(0,0,0,.03); padding: 25px 25px; padding-top:
+        35px; "> <video style="padding-bottom: 0.5em;"
+          controls="controls" width="100%"> <source
+            src="[insert videolink]" type="video/mp4"> Das Video kann in
+          dieser Anzeige leider nicht abgespielt werden. Link
+          zum Video: <a
+            href="[insert videolink]">Hier klicken!</a> </video>
+            [insert root]
+        </div>
+    </div>
+    <span class="timeline-author">[insert source]</span>
+  </div>
+[end video html]
+
+<!--
+[begin video text]
+------o ^ ^ ^ o------
+
+Video: [insert videolink]
+Videolink: [insert description]
+
+[insert root]
+
+- [insert source]
+---------------------
+[end video text]
+-->
+
+[begin traveltipps html]
+<div class="timeline-article traveltipps">
+    <div class="content-right-container" style="width: 100%;">
+      <div class="content-right" style=" max-width: 100%; width:
+      auto; left: 0px; float: none; min-height: 53px;
+      position: relative; border: 2px solid
+      var(--button-color); border-radius: 10px;
+      background-color: var(--card-color); box-shadow: 1px 10px
+      30px rgba(0,0,0,.03); padding: 25px 25px; margin-top:
+      220px; padding-top: 110px;"> <img src="https://cloud.bau-ha.us/apps/files_sharing/publicpreview/d5qPQMdwMCTM6WR?file=&fileId=4476327&x=1024&y=1024" alt="Avatar" style=" display: block; margin-left: auto; margin-right: auto; margin-top: -370px; width: 73%;">        [insert root]
+      </div>
+      <span class="timeline-author">Exklusiver Inhalt</span> </div>
+  </div>
+[end traveltipps html]
+
+<!--
+[begin traveltipps text]
+------o ^ ^ ^ o------
+
+= Ludwig's Traveltipps =
+
+[insert root]
+
+---------------------
+
+[end traveltipps text]
+-->
+
+[begin sprachlabor html]
+<div class="timeline-article sprachlabor">
+    <div class="content-right-container" style="width: 100%;">
+      <div class="content-right" style=" max-width: 100%; width:
+      auto; left: 0px; float: none; min-height: 53px;
+      position: relative; border: 2px solid
+      var(--button-color); border-radius: 10px;
+      background-color: var(--card-color); box-shadow: 1px 10px
+      30px rgba(0,0,0,.03); padding: 25px 25px; margin-top:
+      260px; padding-top: 110px;"> <img src="https://ludattel.de/newsletter/resources/categories/sprachlabor/sprachlabor_deutsch.png" alt="Avatar" style=" display: block; margin-left: auto; margin-right: auto; margin-top: -350px; width: 100%;">        [insert root]
+      </div>
+      <span class="timeline-author">Exklusiver Inhalt</span> </div>
+  </div>
+[end sprachlabor html]
+
+<!--
+[begin sprachlabor text]
+
+## Sprachlabor Babylon
+
+[insert root]
+
+---
+
+[end sprachlabor text]
+-->
+
+
+[begin feinedinge html]
+<div class="timeline-article feinedinge">
+    <div class="content-right-container" style="width: 100%;">
+      <div class="content-right" style=" max-width: 100%; width:
+      auto; left: 0px; float: none; min-height: 53px;
+      position: relative; border: 2px solid
+      var(--button-color); border-radius: 10px;
+      background-color: var(--card-color); box-shadow: 1px 10px
+      30px rgba(0,0,0,.03); padding: 25px 25px; margin-top:
+      220px; padding-top: 110px;"> <img src="https://cloud.uni-weimar.de/apps/files_sharing/publicpreview/72PjWDocePPt2nq?x=1366&y=276&a=true&file=BackgroundEraser_20221114_003938711.png" alt="Avatar" style=" display: block; margin-left: auto; margin-right: auto; margin-top: -370px; width: 73%;">
+          [insert root]
+      </div>
+      <span class="timeline-author">Exklusiver Inhalt</span> </div>
+  </div>
+[end feinedinge html]
+
+<!--
+[begin feinedinge text]
+------o       o------
+
+= Ludwig's Club für feine Dinge =
+
+[insert root]
+
+---------------------
+
+[end feinedinge text]
+-->
+
+[begin typo html]
+<div class="timeline-article typo">
+    <div class="content-right-container" style="width: 100%;">
+      <div class="content-right" style=" max-width: 100%; width:
+      auto; left: 0px; float: none; min-height: 53px;
+      position: relative; border: 2px solid
+      var(--button-color); border-radius: 10px;
+      background-color: var(--card-color); box-shadow: 1px 10px
+      30px rgba(0,0,0,.03); padding: 25px 25px; margin-top:
+      240px; padding-top: 110px; padding-bottom: 60px; margin-bottom: 50px;"> <img src="https://h2981402.stratoserver.net/newsletter/resources/categories/typo/schriftschnueffler_deutsch.png" alt="Avatar" style=" display: block; margin-left: auto; margin-right: auto; margin-top: -370px; margin-bottom: -30px; width: 83%;">
+        [insert root]
+      </div>
+      <span class="timeline-author">Exklusiver Inhalt</span> </div>
+      <div class="button" style=" bottom: 20px; position: absolute;
+          left:50%; width: 200px; margin-left: -100px; height: 62px;
+          color: var(--cross-color); border-radius: 2%; background:
+          var(--button-color);  
+          box-shadow: 10px 10px 0px rgba(200,100,0,.3); "> <a
+            href="[insert fontlink]" download style="text-decoration: none; color: var(--cross-color);"> <span class="date" style=" display:
+              block; text-align: center; font-weight: 900; font-size:
+              30px; line-height: 40px; ">Font</span> <span
+              class="month" style=" display: block; text-align: center;
+              font-weight: 900; font-size: 18px; line-height: 10px; ">herunterladen</span>
+          </a> </div>
+  </div>
+[end typo html]
+
+<!--
+[begin typo text]
+------o       o------
+
+= Der Schriftschnüffler =
+
+[insert root]
+
+---------------------
+
+[end typo text]
+-->
+
+
+[begin arthur html]
+<div class="timeline-article arthur">
+  <div class="content-right-container" style="width: 100%;">
+    <div class="content-right-arthur" style=" max-width: 100%; width:
+      auto; left: 0px; float: none; min-height: 53px; color:white;
+      position: relative; border: 7px solid
+      #e6f96a; border-radius: 10px; text-shadow: 1px 1px 2px #3d3963; font-family: Vollkorn; font-size: 18px;
+      background-color: #a18059; box-shadow: 1px 10px
+      30px rgba(0,0,0,.03); padding: 25px 25px; margin-top:
+      220px; padding-top: 110px;">
+      <img src="https://cloud.uni-weimar.de/apps/files_sharing/publicpreview/zbidtFTB5GSt2mq?x=1366&y=276&a=true&file=BackgroundEraser_20221113_131956096.png&scalingup=0" alt="Avatar" style=" display: block; margin-left: auto; margin-right: auto; margin-top: -370px; width: 73%;">
+      [insert root]
+      </div>
+    <span class="timeline-author">Exklusiver Inhalt</span> </div>
+</div>
+[end arthur html]
+
+<!--
+[begin arthur text]
+------o       o------
+
+= Arthur's Update =
+
+[insert root]
+
+---------------------
+
+[end arthur text]
+-->
+
+
+[begin redaktion html]
+<div class="timeline-article redaktion">
+    <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+        <div class="content-right" style="							
+            position: relative;
+            border: 2px solid var(--button-color);
+            border-radius: 10px;
+            padding: 25px 25px;
+            font-family: 'Courier New', Courier, monospace;
+            margin-top: 50px;
+            box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+            background-color: var(--card-color);
+        ">
+            <div class="meta-date" style="	  
+                position: relative;
+                width: 62px;
+                height: 62px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -55px;
+                margin-bottom: 15px;
+                color: var(--card-color);
+                border-radius: 100%;
+                background: var(--button-color);
+            ">
+                <span class="date" style="
+                    display: block;
+                    text-align: center;
+                    font-weight: 900;
+                    font-size: 55px;
+                    line-height: 70px;
+                ">!</span>
+            </div>
+            <div style="text-align: center; font-size: 1.6em; margin-bottom: 1em;">Redaktioneller Hinweis</div>
+            <div style="text-align: justify;"> [insert root] </div>
+        </div>
+    </div>
+    <span class="timeline-author">[insert source]</span>
+</div>
+[end redaktion html]
+
+
+<!--
+[begin redaktion text]
+------o Redaktioneller Hinweis o------
+
+[insert root]
+
+- [insert source]
+---------------------
+[end redaktion text]
+-->
+
+[begin article-mastodon-cw html]
+
+<div class="timeline-article">
+  <div class="content-right-container" style="width: 100%; padding-top: 21px;">
+      <div class="content-right" style="							
+position: relative;
+border: 2px solid var(--button-color);
+border-radius: 10px;
+padding: 25px 25px;
+margin-top: 50px;
+box-shadow: 1px 10px 30px rgba(0,0,0,.03);
+background-color: var(--card-color);
+">
+          <div class="meta-date" style="	  
+position: relative;
+width: 62px;
+height: 62px;
+margin-left: auto;
+margin-right: auto;
+margin-top: -55px;
+margin-bottom: 15px;
+color: var(--card-color);
+border-radius: 100%;
+background: var(--button-color);
+">
+              <span class="date" style="
+  display: block;
+  text-align: center;
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 40px;
+">25</span>
+              <span class="month" style="
+  display: block;
+  text-align: center;
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 10px;
+">Mär</span>
+      </div>
+
+          <div class="wrap-blurrable">
+              <input id="blurrable-[insert CW ID]" class="toggle" type="checkbox" style="display: none;"> <label for="blurrable-[insert CW ID]" class="lbl-toggle" style="display: block;
+              font-weight: bold;
+              font-family: monospace;
+              font-size: 1.2em;
+              text-transform: uppercase;
+              text-align: center;
+              padding: 1em;
+              margin-bottom: 0.4em;
+              color: var(--button-color);
+              background: var(--card-color);
+              border-radius: 7px;">CW: [insert CW]</label>
+              <div class="blurrable-content">
+                 
+                  <div class="content-inner">
+                      
+                      [insert root]
+                      
+                  </div>
+
+              </div>
+          </input>
+          
+      </div>
+
+  </div>
+  <span class="timeline-author"><a
+          href="https://social.bau-ha.us/@viji5369">@viji5369@social.bau-ha.us</a></span>
+</div>
+
+
+<style>         
+
+  .content-right .wrap-blurrable {
+      margin: 1.2rem 0;
+  }
+
+  .content-right .wrap-blurrable .lbl-toggle {
+      cursor: pointer;
+      transition: all 0.5s ease-out;
+      color: var(--card-color) !important;
+      background: var(--button-color) !important;
+  }
+
+  .content-right .wrap-blurrable .toggle:checked+ .lbl-toggle {
+      color: var(--button-color) !important;
+      background: var(--card-color) !important;
+  }
+
+  .content-right .wrap-blurrable .lbl-toggle:hover {
+      color: #FFF;
+  }
+
+  .content-right .wrap-blurrable .lbl-toggle::before {
+      content: '+';
+      display: inline-block;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      vertical-align: middle;
+      margin-right: .7rem;
+      transform: translateY(-1px);
+      transition: transform .2s ease-out;
+  }
+
+  .content-right .wrap-blurrable .toggle:checked+.lbl-toggle::before {
+      transform: rotate(45deg) translateY(-2px);
+  }
+
+  .content-right .wrap-blurrable .blurrable-content {
+      text-shadow: 0 0 8px #000;
+      transition: all .85s ease-in-out;
+  }
+
+  .content-right .wrap-blurrable .blurrable-content img {
+      filter: blur(8px) grayscale(100%);
+      transition: all .85s ease-in-out;
+  }
+
+  .content-right .wrap-blurrable .toggle:checked+.lbl-toggle+.blurrable-content {
+      text-shadow: 0 0 0px #000;
+      color: black;
+      transition: all .45s ease-in-out;
+  }
+
+  .content-right .wrap-blurrable .toggle:checked+.lbl-toggle+ .blurrable-content img {
+      filter: blur(0px) grayscale(0%);
+      transition: all .85s ease-in-out;
+  }
+
+  .content-right .wrap-blurrable .toggle:checked+.lbl-toggle {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+  }
+
+  .content-right .wrap-blurrable .blurrable-content .content-inner {
+      border-bottom-left-radius: 7px;
+      border-bottom-right-radius: 7px;
+      padding: .5rem 1rem;
+  }
+
+  .content-right .wrap-blurrable .blurrable-content p {
+      margin-bottom: 0;
+      color: transparent;
+  }
+
+  .content-right .wrap-blurrable .blurrable-content p {
+      margin-bottom: 0;
+      color: transparent;
+  }
+</style>
+[end article-mastodon-cw html]
+<br>
+
+<!--
+[begin article-mastodon-cw text]
+------o [insert date].[insert month_num] o------
+Content-Warning // Inhaltswarnung: [insert CW]
+
+Der Inhalt beginnt in 3..
+2...
+1...
+
+[insert media]
+[insert root]
+
+- [insert source]
+---------------------
+[end article-mastodon-cw text]
+-->
+
+
+
+</div>
+</body>
+</html>

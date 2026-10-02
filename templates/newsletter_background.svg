@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 2340" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <linearGradient id="gradient-2" bx:pinned="true"/>
+    <linearGradient gradientUnits="userSpaceOnUse" bx:pinned="true" id="color-0">
+      <stop style="stop-color: #e3fdfd;"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" bx:pinned="true" id="color-1">
+      <stop style="stop-color: #cbf1f5;"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" bx:pinned="true" id="color-2">
+      <stop style="stop-color: #a6e3e9;"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" bx:pinned="true" id="color-3">
+      <title>turkis</title>
+      <stop style="stop-color: rgb(12, 149, 156);"/>
+    </linearGradient>
+    <bx:export>
+      <bx:file format="svg" href="#object-0" path="cloud1.svg" excluded="true"/>
+      <bx:file format="svg"/>
+    </bx:export>
+  </defs>
+  <path style="fill: url(&quot;#color-3&quot;); fill-opacity: 0.3;" d="M 0 1349.273 C 10.147 1264.69 460.796 1314.263 314.917 1715.929 C 310.104 1726.974 364.573 1712.315 381.122 1781.105 C 387.293 1705.188 367.413 1546.457 561.471 1500 C 576.941 1526.078 547.499 1149.603 815.443 1050.279 C 770.741 1050.198 561.755 566.715 1100 500 L 1100 0 L 0 0 L 0 1349.273 Z">
+    <title>cloud3</title>
+  </path>
+  <path style="fill: url(&quot;#color-3&quot;); fill-opacity: 0.36;" d="M 0.072 1459.018 C 0.072 1459.018 339.455 1489.832 232.798 1891.5 C 232.798 1891.5 303.146 1905.116 319.032 2002.696 C 319.032 2002.696 325.839 1852.922 496.038 1855.191 C 496.038 1855.191 457.46 1505.717 818.28 1512.525 C 813.233 1510.282 799.743 1206.863 1100 1174.398 L 1100 0 L 0 0 L 0.072 1459.018 Z">
+    <title>cloud2</title>
+  </path>
+  <path style="fill: url(&quot;#color-3&quot;); fill-opacity: 0.14;" d="M 0 2064.071 C 37.224 2035.147 310.679 1972.067 375.437 2267.655 C 410.679 2164.828 628.912 2000 800 2227.991 C 799.672 2156.702 845.873 2041.022 1000 2074.789 C 1000 2072.876 950.24 1939.195 1100 1872.009 C 1098.73 1891.052 1100 0 1100 0 L -5.454 0 L 0 2064.071 Z" id="object-0">
+    <title>cloud1</title>
+  </path>
+</svg>
